@@ -269,6 +269,7 @@
 \newcommand{\Sym}{\mathrm{Sym}}
 
 % Miscellaneous
+\newcommand{\nr}{\mathrm{nr}}
 \newcommand{\Aut}{\mathrm{Aut}}
 \newcommand{\Sha}{\mathrm{Sha}}
 \newcommand{\WC}{\mathrm{WC}}
@@ -511,6 +512,42 @@
 \section{Hilbert schemes of elliptic normal curves}
 
 \section{Unramified Brauer group calculations}
+
+\begin{definition}
+    If $V$ is a smooth, geometrically integral scheme over a field $k$, we let $\Br_{\nr}(V)$ denote 
+    the subgroup of $\Br(V)$ consisting of classes which extend to a smooth proper model of $V$. We
+    let $\Br_1(V)$ be the subgroup of $\Br(V)$ of classes which vanish after extension of scalars to
+    the algebraic closure of $k$. And, we let $\Br_{1,\nr}(V)=\Br_\nr(V)\cap\Br_1(V)$, the subgroup
+    of $\Br(V)$ of geometrically trivial unramified Brauer classes. This group contains as a
+    subgroup the group $\Br_0(V)=\im(\Br(k)\rightarrow\Br(V))$.
+\end{definition}
+
+\begin{proposition}
+    Let $E$ be an elliptic curve over a field $k$ and let $N$ be an integer prime to the
+    characteristic of $k$. Let $V_E$ be the
+    Hilbert scheme of elliptic normal curves $C$ in $\bP^{N-1}_k$
+    with a fixed isomorphism $\Pic_{C/k}^0\iso E$. 
+    If the image of the Galois group of $k$ in $\GL_2(\bZ/N)$ associated to $E[N]$
+    is conjugate to the unipotent group $$U_2=\left\{\begin{pmatrix}1&*\\0&1\end{pmatrix}\colon
+    *\in\bZ/N\right\},$$ then, $$\Br(k)\rightarrow\Br_{1,\nr}(V_E)$$
+    is an isomorphism.
+\end{proposition}
+
+\begin{proof}
+    Since $V_E$ has a rational point, corresponding to $E$ embedded into $\bP^{N-1}_k$
+    via a line bundle $\Lscr$ of degree $N$ and a choice of basis of $\H^0(E,\Lscr)$, the map
+    $\Br(k)\rightarrow\Br_{1,\nr}(V_E)$ is injective with image $\Br_0(V)$. We use the criterion of
+    Harpaz--Wittenberg~\cite{harpaz-wittenberg-massey}.
+\end{proof}
+
+\begin{remark}
+    The assumption on the Galois representation implies that $E[N]$ sits inside a maximally non-split exact sequence
+    $$0\rightarrow\bZ/N\rightarrow E[N]\rightarrow\bZ/N\rightarrow 0.$$
+\end{remark}
+
+
+
+
 
 \section{The local-global principle}
 
