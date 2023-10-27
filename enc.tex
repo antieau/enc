@@ -1,0 +1,525 @@
+\documentclass[10pt,letterpaper,twoside]{article}
+
+\usepackage[letterpaper,left=1in,right=1in,top=1.5in,bottom=1.5in]{geometry}
+
+\title{Elliptic normal curves and the Brauer--Manin obstruction}
+\author{}
+\date{\today}
+
+%%%%%%%%%%%%%%%%%%            
+%%% Dictionary %%%
+%%%%%%%%%%%%%%%%%%
+% Idempotent complete
+% Nonconnective
+% Grouplike
+%%%%%%%%%%%%%%%%%%
+
+\usepackage[pdfstartview=FitH,
+            pdfauthor={},
+            pdftitle={More g1c},
+            colorlinks,
+            linkcolor=reference,
+            citecolor=citation,
+            urlcolor=e-mail,
+            backref]{hyperref}
+
+% General includes
+\usepackage{amsmath}
+\usepackage{amscd}
+\usepackage{amsbsy}
+\usepackage{amssymb}
+\usepackage{verbatim}
+\usepackage{eufrak}
+\usepackage{eucal}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{stmaryrd}
+\pagestyle{headings}
+\usepackage{xy}
+\input xy
+\xyoption{all}
+\usepackage{tikz}
+\usetikzlibrary{matrix,arrows}
+\usepackage{tikz-cd}
+\usepackage{dsfont}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\setlist{noitemsep}
+
+% Headers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}
+\fancyhead{}
+\fancyhead[LO,R]{\bfseries\footnotesize\thepage}
+\fancyhead[LE]{\bfseries\footnotesize\rightmark}
+\fancyhead[RO]{\bfseries\footnotesize\rightmark}
+\chead[]{}
+\cfoot[]{}
+\setlength{\headheight}{1cm}
+
+% Prisms
+\usepackage[bbgreekl]{mathbbol}
+\usepackage{amsfonts}
+\DeclareSymbolFontAlphabet{\mathbb}{AMSb} % to ensure \mathbb does not change
+\DeclareSymbolFontAlphabet{\mathbbl}{bbold}
+\newcommand{\Prism}{{\mathbbl{\Delta}}}
+\newcommand{\Prismbar}{{\overline{\mathbbl{\Delta}}}}
+\newcommand{\Inf}{{\mathbbl{\Pi}}}
+\newcommand{\Infbar}{{\overline{\mathbbl{\Pi}}}}
+\newcommand{\Strat}{{\mathbbl{\Sigma}}}
+\newcommand{\Stratbar}{{\overline{\mathbbl{\Sigma}}}}
+\usepackage{yhmath}
+\newcommand{\prismhat}[1]{\widetriangle{#1}}
+\newcommand{\tensorprism}{\prismhat{\otimes}}
+\newcommand{\WCart}{\mathrm{WCart}}
+\newcommand{\HT}{\mathrm{HT}}
+\newcommand{\prism}{{ \mathbbl{\Delta}}}
+\newcommand{\oprism}{\overline{\mathbbl{\Delta}}}
+\newcommand{\pc}{\mathrm{pc}}
+\newcommand{\wc}{\mathrm{wc}}
+
+% Color definitions
+\usepackage{color}
+\definecolor{todo}{rgb}{1,0,0}
+\definecolor{conditional}{rgb}{0,1,0}
+\definecolor{e-mail}{rgb}{0,.40,.80}
+\definecolor{reference}{rgb}{.20,.60,.22}
+\definecolor{mrnumber}{rgb}{.80,.40,0}
+\definecolor{citation}{rgb}{0,.40,.80}
+
+% Font commands
+\renewcommand{\bf}{\bfseries}
+\renewcommand{\rm}{\mdseries}
+
+% Some commenting features
+\newcommand{\todo}[1]{\textcolor{todo}{#1}}
+\newcommand{\conditional}[1]{\textcolor{conditional}{#1}}
+\setlength{\marginparwidth}{1.2in}
+\let\oldmarginpar\marginpar
+\renewcommand\marginpar[1]{\-\oldmarginpar[\raggedleft\footnotesize #1]%
+{\raggedright\footnotesize #1}}
+
+% Script letters
+\newcommand{\Ascr}{\mathcal{A}}
+\newcommand{\Bscr}{\mathcal{B}}
+\newcommand{\Cscr}{\mathcal{C}}
+\newcommand{\Dscr}{\mathcal{D}}
+\newcommand{\Escr}{\mathcal{E}}
+\newcommand{\Fscr}{\mathcal{F}}
+\newcommand{\Gscr}{\mathcal{G}}
+\newcommand{\Hscr}{\mathcal{H}}
+\newcommand{\Iscr}{\mathcal{I}}
+\newcommand{\Kscr}{\mathcal{K}}
+\newcommand{\Lscr}{\mathcal{L}}
+\newcommand{\Mscr}{\mathcal{M}}
+\newcommand{\Nscr}{\mathcal{N}}
+\newcommand{\Oscr}{\mathcal{O}}
+\newcommand{\Pscr}{\mathcal{P}}
+\newcommand{\Qscr}{\mathcal{Q}}
+\newcommand{\Rscr}{\mathcal{R}}
+\newcommand{\Sscr}{\mathcal{S}}
+\newcommand{\Tscr}{\mathcal{T}}
+\newcommand{\Vscr}{\mathcal{V}}
+\newcommand{\Wscr}{\mathcal{W}}
+\newcommand{\Xscr}{\mathcal{X}}
+
+% Roman letters
+\renewcommand{\a}{\mathrm{a}}
+\newcommand{\A}{\mathrm{A}}
+\renewcommand{\b}{\mathrm{b}}
+\newcommand{\B}{\mathrm{B}}
+\renewcommand{\c}{\mathrm{c}}
+\newcommand{\C}{\mathrm{C}}
+\renewcommand{\d}{\mathrm{d}}
+\newcommand{\D}{\mathrm{D}}
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\F}{\mathrm{F}}
+\newcommand{\G}{\mathrm{G}}
+\renewcommand{\H}{\mathrm{H}}
+\newcommand{\h}{\mathrm{h}}
+\newcommand{\I}{\mathrm{I}}
+\newcommand{\K}{\mathrm{K}}
+\renewcommand{\L}{\mathrm{L}}
+\newcommand{\M}{\mathrm{M}}
+\newcommand{\N}{\mathrm{N}}
+\renewcommand{\P}{\mathrm{P}}
+\newcommand{\R}{\mathrm{R}}
+\renewcommand{\S}{\mathrm{S}}
+\newcommand{\s}{\mathrm{s}}
+\newcommand{\T}{\mathrm{T}}
+\renewcommand{\t}{\mathrm{t}}
+\newcommand{\U}{\mathrm{U}}
+\renewcommand{\u}{\mathrm{u}}
+\newcommand{\W}{\mathrm{W}}
+\newcommand{\X}{\mathrm{X}}
+\newcommand{\Z}{\mathrm{Z}}
+
+% Bold letters
+\renewcommand{\1}{\mathbf{1}}
+\newcommand{\bA}{\mathbf{A}}
+\newcommand{\bB}{\mathbf{B}}
+\newcommand{\bC}{\mathbf{C}}
+\newcommand{\bD}{\mathbf{D}}
+\newcommand{\bE}{\mathbf{E}}
+\newcommand{\bF}{\mathbf{F}}
+\newcommand{\bG}{\mathbf{G}}
+\newcommand{\bH}{\mathbf{H}}
+\newcommand{\bI}{\mathbf{I}}
+\newcommand{\bJ}{\mathbf{J}}
+\newcommand{\bK}{\mathbf{K}}
+\newcommand{\bL}{\mathbf{L}}
+\newcommand{\bM}{\mathbf{M}}
+\newcommand{\bN}{\mathbf{N}}
+\newcommand{\bO}{\mathbf{O}}
+\newcommand{\bP}{\mathbf{P}}
+\newcommand{\bQ}{\mathbf{Q}}
+\newcommand{\bR}{\mathbf{R}}
+\newcommand{\bS}{\mathbf{S}}
+\newcommand{\bT}{\mathbf{T}}
+\newcommand{\bU}{\mathbf{U}}
+\newcommand{\bV}{\mathbf{V}}
+\newcommand{\bW}{\mathbf{W}}
+\newcommand{\bX}{\mathbf{X}}
+\newcommand{\bY}{\mathbf{Y}}
+\newcommand{\bZ}{\mathbf{Z}}
+
+\renewcommand{\mathds}{\mathbbl}
+
+% Blackboard letters
+\renewcommand{\AA}{\mathds{A}}
+\newcommand{\BB}{\mathds{B}}
+\newcommand{\CC}{\mathds{C}}
+\newcommand{\EE}{\mathds{E}}
+\newcommand{\FF}{\mathds{F}}
+\newcommand{\GG}{\mathds{G}}
+\newcommand{\MM}{\mathds{M}}
+\newcommand{\NN}{\mathds{N}}
+\newcommand{\PP}{\mathds{P}}
+\newcommand{\QQ}{\mathds{Q}}
+\newcommand{\RR}{\mathds{R}}
+\renewcommand{\SS}{\mathds{S}}
+\newcommand{\TT}{\mathds{T}}
+\newcommand{\ZZ}{\mathds{Z}}
+
+% Frakture letters
+\newcommand{\Sfrak}{\mathfrak{S}}
+
+% oo-categories
+\newcommand{\Cat}{\Cscr\mathrm{at}}
+\newcommand{\Catn}{\Cat_n}
+\newcommand{\iCat}{\Cat_\infty}
+\newcommand{\Fin}{\Fscr\mathrm{in}}
+\newcommand{\Op}{\Oscr\mathrm{p}}
+\newcommand{\Groth}{\Gscr\mathrm{roth}}
+\newcommand{\Sp}{\Sscr\mathrm{p}}
+\newcommand{\Spc}{\Sscr}
+
+% Big categories
+\newcommand{\Ab}{\Ascr\mathrm{b}}
+\newcommand{\Topoi}{\Tscr\mathrm{op}}
+\newcommand{\PrL}{\Pscr\mathrm{r}^{\mathrm{L}}}
+\newcommand{\PrR}{\Pscr\mathrm{r}^{\mathrm{R}}}
+
+% oo-category notation
+\newcommand{\dual}{\mathrm{dual}}
+\newcommand{\fd}{\mathrm{fd}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\cofib}{\mathrm{cofib}}
+\newcommand{\fib}{\mathrm{fib}}
+
+% Additive and stable oo-category notation
+\newcommand{\ex}{\mathrm{ex}}
+\newcommand{\lex}{\mathrm{lex}}
+\newcommand{\cn}{\mathrm{cn}}
+\newcommand{\proj}{\mathrm{proj}}
+\newcommand{\dg}{\mathrm{dg}}
+
+% Algebraic categories
+\newcommand{\GrMod}{\mathrm{GrMod}}
+\newcommand{\Ch}{\mathrm{Ch}}
+\newcommand{\Mod}{\mathrm{Mod}}
+\newcommand{\coMod}{\mathrm{coMod}}
+\newcommand{\RMod}{\mathrm{RMod}}
+\newcommand{\QCoh}{\mathrm{QCoh}}
+\newcommand{\qc}{\mathrm{qc}}
+\newcommand{\Coh}{\mathrm{Coh}}
+\newcommand{\Perf}{\mathrm{Perf}}
+\newcommand{\Ind}{\mathrm{Ind}}
+\newcommand{\Pro}{\mathrm{Pro}}
+\newcommand{\Alg}{\mathrm{Alg}}
+\newcommand{\CAlg}{\mathrm{CAlg}}
+\newcommand{\ACAlg}{\mathrm{ACAlg}}
+\newcommand{\DAlg}{\mathrm{DAlg}}
+\newcommand{\coh}{\mathrm{coh}}
+\newcommand{\DF}{\D\F}
+\newcommand{\DGr}{\mathrm{DGr}}
+\newcommand{\Shv}{\mathrm{Shv}}
+
+% Gradings and filtrations
+\newcommand{\Gr}{\mathrm{Gr}}
+\newcommand{\gr}{\mathrm{gr}}
+\newcommand{\ins}{\mathrm{ins}}
+\newcommand{\fil}{\mathrm{fil}}
+
+% Derived commutative rings
+\newcommand{\LSym}{\mathrm{LSym}}
+\newcommand{\Sym}{\mathrm{Sym}}
+
+% Miscellaneous
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\Sha}{\mathrm{Sha}}
+\newcommand{\WC}{\mathrm{WC}}
+\newcommand{\an}{\mathrm{an}}
+\renewcommand{\top}{\mathrm{top}}
+\newcommand{\un}{\mathrm{un}}
+\newcommand{\pro}{\mathrm{pro}}
+\newcommand{\nil}{\mathrm{nil}}
+\newcommand{\ft}{\mathrm{ft}}
+\newcommand{\fin}{\mathrm{fin}}
+\newcommand{\taut}{\mathrm{taut}}
+\newcommand{\ccn}{\mathrm{ccn}}
+\newcommand{\fsc}{\mathrm{fsc}}
+\newcommand{\bFbar}{\overline{\bF}}
+\newcommand{\Poly}{\mathrm{Poly}}
+\newcommand{\Vect}{\mathrm{Vect}}
+\newcommand{\perf}{\mathrm{perf}}
+\newcommand{\CycSp}{\mathrm{CycSp}}
+\newcommand{\syn}{\mathrm{syn}}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\Pairs}{\mathrm{Pairs}}
+\newcommand{\tensorhat}{\widehat{\otimes}}
+\newcommand{\tensor}{\otimes}
+\newcommand{\init}{\mathrm{init}}
+\newcommand{\der}{\mathrm{der}}
+\newcommand{\site}{\mathrm{site}}
+\newcommand{\dz}{{\mathrm{d}z}}
+\newcommand{\can}{\mathrm{can}}
+\newcommand{\xto}{\xrightarrow}
+\newcommand{\heart}{\heartsuit}
+\newcommand{\tors}{\mathrm{tors}}
+\newcommand{\coev}{\mathrm{coev}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\cof}{\mathrm{cof}}
+\newcommand{\coker}{\mathrm{coker}}
+\newcommand{\im}{\mathrm{im}}
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+\newcommand{\Ho}{\mathrm{Ho}}
+
+% Structure sheaves
+\newcommand{\sOX}{\Oscr_X}
+
+% Homological functors
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\Ext}{Ext}
+\newcommand{\HC}{\mathrm{HC}}
+\newcommand{\THH}{\mathrm{THH}}
+\newcommand{\MH}{\mathrm{MH}}
+\newcommand{\MP}{\mathrm{MP}}
+\newcommand{\HH}{\mathrm{HH}}
+\newcommand{\HP}{\mathrm{HP}}
+\newcommand{\TP}{\mathrm{TP}}
+\newcommand{\TC}{\mathrm{TC}}
+\newcommand{\TF}{\mathrm{TF}}
+\newcommand{\TR}{\mathrm{TR}}
+\newcommand{\KH}{\mathrm{KH}}
+\newcommand{\KEnd}{\mathrm{KEnd}}
+\newcommand{\KNil}{\mathrm{KNil}}
+\newcommand{\KCoNil}{\mathrm{KCoNil}}
+\newcommand{\KAut}{\mathrm{KAut}}
+\newcommand{\KFor}{\mathrm{KFor}}
+\newcommand{\GEnd}{\mathrm{GEnd}}
+\newcommand{\GNil}{\mathrm{GNil}}
+\newcommand{\GCoNil}{\mathrm{GCoNil}}
+\newcommand{\GAut}{\mathrm{GAut}}
+\newcommand{\GFor}{\mathrm{GFor}}
+
+% de Rham cohomology
+\newcommand{\BMS}{\mathrm{BMS}}
+\newcommand{\RQRSPerfdscr}{\Rscr\Qscr\mathrm{RSPerfd}}
+\newcommand{\QSynscr}{\Qscr\mathrm{Syn}}
+\newcommand{\QSyn}{\mathrm{QSyn}}
+\newcommand{\qSyn}{\mathrm{qSyn}}
+\newcommand{\QRSPerfdscr}{\Qscr\mathrm{RSPerfd}}
+\newcommand{\dR}{\mathrm{dR}}
+\newcommand{\conj}{\mathrm{conj}}
+\newcommand{\dRhat}{\widehat{\dR}}
+\newcommand{\Ocp}{\Oscr_{\bC_p}}
+\newcommand{\Oc}{\Oscr_{\bC}}
+\newcommand{\Prismhat}{\widehat{\Prism}}
+\newcommand{\GM}{\mathrm{GM}}
+\newcommand{\DMIC}{\mathrm{DMIC}}
+\newcommand{\crys}{\mathrm{crys}}
+\newcommand{\stack}{\mathrm{stack}}
+\renewcommand{\inf}{\mathrm{inf}}
+
+% Cohomology theories
+\newcommand{\ku}{\mathrm{ku}}
+\newcommand{\KU}{\mathrm{KU}}
+\newcommand{\ko}{\mathrm{ko}}
+\newcommand{\KO}{\mathrm{KO}}
+\newcommand{\TMF}{\mathrm{TMF}}
+\newcommand{\MU}{\mathrm{MU}}
+ 
+% Mapping objects
+\newcommand{\Map}{\mathrm{Map}}
+\newcommand{\bMap}{\mathbf{Map}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Fun}{\mathrm{Fun}}
+\newcommand{\End}{\mathrm{End}}
+
+% Sheaves
+\newcommand{\bBr}{\mathbf{Br}}
+\newcommand{\bBBr}{\mathbf{BBr}}
+\newcommand{\bPic}{\mathbf{Pic}}
+\newcommand{\bBPic}{\mathbf{BPic}}
+
+% Algebraic and compact Lie groups
+\newcommand{\Gm}{\bG_{m}}
+\newcommand{\Ga}{\bG_{a}}
+\newcommand{\GL}{\mathbf{GL}}
+\newcommand{\PGL}{\mathbf{PGL}}
+\newcommand{\SL}{\mathbf{SL}}
+
+% Classifying spaces
+\newcommand{\BGm}{\mathbf{BG}_m}
+\newcommand{\BGL}{\mathbf{BGL}}
+\newcommand{\BPGL}{\mathbf{BPGL}}
+
+% Brauer groups
+\newcommand{\Pic}{\mathrm{Pic}}
+\newcommand{\Br}{\mathrm{Br}}
+\newcommand{\per}{\mathrm{per}}
+\newcommand{\ind}{\mathrm{ind}}
+\renewcommand{\deg}{\mathrm{deg}}
+
+% Limits and colimits
+\DeclareMathOperator*{\holim}{holim}
+\DeclareMathOperator*{\colim}{colim}
+\DeclareMathOperator*{\hocolim}{hocolim}
+\DeclareMathOperator*{\Tot}{Tot}
+\newcommand{\LEq}{\mathrm{LEq}}
+
+% Topologies on schemes
+\newcommand{\fppf}{\mathrm{fppf}}
+\newcommand{\et}{\mathrm{\acute{e}t}}
+\newcommand{\proet}{\mathrm{pro\acute{e}t}}
+\newcommand{\Zar}{\mathrm{Zar}}
+\newcommand{\Nis}{\mathrm{Nis}}
+
+% Schemes
+\newcommand{\Stk}{\mathrm{Stk}}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\FSpec}{FSpec}
+\DeclareMathOperator{\GrSpec}{GrSpec}
+\DeclareMathOperator{\Spf}{Spf}
+\DeclareMathOperator{\SSpf}{\SS pf}
+\DeclareMathOperator{\Proj}{Proj}
+\newcommand{\red}{\mathrm{red}}
+
+% Special arrows
+\newcommand{\triplerightarrows}{%
+    \tikz[minimum height=0ex]
+          \path[->]
+             node (a)            {}
+       node (b) at (1em,0) {}
+         (a.north)  edge (b.north)
+               (a.center) edge (b.center)
+                 (a.south)  edge (b.south);%
+}
+\newcommand{\lrlarrows}{%
+    \tikz[minimum height=0ex]
+          \path[->]
+             node (a)            {}
+       node (b) at (1em,0) {}
+         (b.north)  edge (a.north)
+               (a.center) edge (b.center)
+                 (b.south)  edge (a.south);%
+}
+\newcommand{\we}{\simeq}
+\newcommand{\iso}{\cong}
+\newcommand{\rcof}{\rightarrowtail}
+\newcommand{\rfib}{\twoheadrightarrow}
+\newcommand{\lcof}{\leftarrowtail}
+\newcommand{\lfib}{\twoheadleftarrow}
+
+% Theorems
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{scholium}[theorem]{Scholium}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conditionalprop}[theorem]{Conditional Proposition}
+\newtheorem{conditionaltheorem}[theorem]{Conditional Theorem}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem{ideal}[theorem]{Ideal Theorem}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{statement}[theorem]{Statement}
+
+\theoremstyle{plain}
+\newtheorem{maintheorem}{Theorem}
+\newtheorem{mainmetatheorem}[maintheorem]{Meta Theorem}
+\newtheorem{mainconjecture}[maintheorem]{Conjecture}
+\newtheorem{maincorollary}[maintheorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{mainquestion}[maintheorem]{Question}
+\newtheorem{mainexample}[maintheorem]{Example}
+\newtheorem{mainremark}[maintheorem]{Remark}
+
+\newtheoremstyle{named}{}{}{\itshape}{}{\bfseries}{.}{.5em}{#1 \thmnote{#3}}
+\theoremstyle{named}
+\newtheorem*{namedtheorem}{Theorem}
+\newtheorem*{namedconjecture}{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{warning}[theorem]{Warning}
+\newtheorem{variant}[theorem]{Variant}
+\newtheorem{aphorism}[theorem]{Aphorism}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\newtheorem{example}[theorem]{Example}
+\newtheorem*{example*}{Example}
+\newtheorem{examples}[theorem]{Examples}
+\newtheorem{question}[theorem]{Question}
+\newtheorem*{question*}{Question}
+\newtheorem{construction}[theorem]{Construction}
+\newtheorem{calculation}[theorem]{Calculation}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{convention}[theorem]{Convention}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{future}[theorem]{Future work}
+\newtheorem{claim}[theorem]{Claim}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+
+\section{Introduction}
+
+\section{Hilbert schemes of elliptic normal curves}
+
+\section{Unramified Brauer group calculations}
+
+\section{The local-global principle}
+
+
+
+
+
+\small
+\bibliographystyle{amsplain}
+\bibliography{enc}
+
+\end{document}
