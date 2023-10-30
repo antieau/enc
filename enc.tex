@@ -3,20 +3,23 @@
 \usepackage[letterpaper,left=1in,right=1in,top=1.5in,bottom=1.5in]{geometry}
 
 \title{Elliptic normal curves and the Brauer--Manin obstruction}
-\author{}
+\author{Benjamin Antieau, Asher Auel, and Federico Scavia}
 \date{\today}
 
 %%%%%%%%%%%%%%%%%%            
 %%% Dictionary %%%
 %%%%%%%%%%%%%%%%%%
-% Idempotent complete
-% Nonconnective
-% Grouplike
+% idempotent complete
+% nonconnective
+% grouplike
+% Brauer--Manin
+% Severi--Brauer
+% genus 1 curve
 %%%%%%%%%%%%%%%%%%
 
 \usepackage[pdfstartview=FitH,
             pdfauthor={},
-            pdftitle={More g1c},
+            pdftitle={Elliptic normal curves},
             colorlinks,
             linkcolor=reference,
             citecolor=citation,
@@ -269,6 +272,7 @@
 \newcommand{\Sym}{\mathrm{Sym}}
 
 % Miscellaneous
+\newcommand{\inv}{\mathrm{inv}}
 \newcommand{\nr}{\mathrm{nr}}
 \newcommand{\Aut}{\mathrm{Aut}}
 \newcommand{\Sha}{\mathrm{Sha}}
@@ -509,11 +513,63 @@
 
 \section{Introduction}
 
-Let $k$ be a field, let $\Bar{k}$ be a separable closure of $k$, let $n\geq 1$ be an integer, and let $A$ be a central simple algebra of degree $n$ over $k$. We write $\bP(A)$ for the Severi-Brauer variety of $A$. By definition, an elliptic normal curve (genus-one normal curve?) in $\bP(A)$ is a smooth projective genus-one curve $C\subset \P(A)$ such that $C_{\Bar{k}}\subset \bP(A_{\Bar{k}})\simeq \bP_{\Bar{k}}^{n-1}$ has degree $n$ and is not contained in any hyperplane of $\bP_{\Bar{k}}^{n-1}$. (This definition is independent of the choice of the isomorphism $\bP(A_{\Bar{k}})\simeq \bP_{\Bar{k}}^{n-1}$.)
+Let $k$ be a field, let $\Bar{k}$ be a separable closure of $k$, let $N\geq 1$ be an integer, and
+let $A$ be a central simple algebra of degree $N$ over $k$. We write $\bP(A)$ for the Severi--Brauer
+variety of $A$. The central simple algebra $A$ defines a class $\alpha\in\Br(k)$. It is an open
+problem of Clark and Saltman to determine whether $\alpha$ (or equivalently $A$) is split by a genus $1$ curve, which is
+to say whether there exists a smooth proper geometrically connected genus $1$ curve $C$ defined over
+$k$ such that the image of $\alpha$ in $\Br(k(C))$ vanishes.
+
+The genus $1$ curve splitting problem, and variants of it, have been considered
+in~\cite{dejong-ho,ho-lieblich,antieau-auel,huybrechts-mattei}. The problem of determining
+which Brauer classes are split by a given genus $1$ curve has been studied
+by~\cite{ciperiani-krashen}, who give algorithms over number fields.
+
+Here is a summary of the state of the art.
+\begin{enumerate}
+    \item[(a)] Over an arbitrary field, geometric arguments using the linear algebra of vector
+        bundles on Severi--Brauer varieties show that central simple algebras of
+        degree at most $5$ are split by genus $1$ curves~\cite{dejong-ho}.
+    \item[(b)] Over an arbitrary field, every Brauer class is split by a torsor for the Jacobian of
+        a curve or a product of two curves~\cite{ho-lieblich}.
+    \item[(c)] Over a local field, every Brauer class is split by a genus $1$ curve~\cite[Ex.~2.4]{antieau-auel}.
+    \item[(d)] Over a number field, every central simple algebra of degrees $d=2,\ldots,10$ or $d=12$ is split
+        by a genus $1$ curve~\cite{antieau-auel} (with the assumption that $k$ contains a primitive $8$th root of unity
+        if $d=8$, an element of the form $\zeta_9+\zeta_9^{-1}$, where $\zeta_9$ is a primitive
+        $9$th root of unity, if $d=9$, and a primitive $4$th root of unity if $d=12$).
+    \item[(e)] If there is an elliptic curve $E$ over $k$ with full level $N$ structure
+        $E[N]\iso\bZ/N\times\mu_N$, then every {\em cyclic} central simple algebra of degree $N$ is
+        split by a genus $1$ curve~\cite{antieau-auel}.
+\end{enumerate}
+
+Geometrically, a central simple algebra $A$ is split by a genus $1$ curve if and only if there is a genus $1$ curve $C$
+defined over $k$ and a $k$-linear morphism $C\rightarrow\bP(A)$. The geometry of this map is
+unspecified.
+
+By definition, if $A$ is a central simple algebra of degree $N$, then an elliptic normal curve in $\bP(A)$ is a
+smooth projective genus $1$ curve $C\subset \bP(A)$ such that $C_{\Bar{k}}\subset
+\bP(A_{\Bar{k}})\simeq \bP_{\Bar{k}}^{N-1}$ has degree $N$ and is not contained in any hyperplane of
+$\bP_{\Bar{k}}^{N-1}$.
+% (This definition is independent of the choice of the isomorphism
+% $\bP(A_{\Bar{k}})\simeq \bP_{\Bar{k}}^{n-1}$.)
+Equivalently, the embedding
+$C_{\Bar{k}}\subseteq\bP(A_{\Bar{k}})\iso\bP^{N-1}$ is defined by a full linear system of degree $N$
+on $C_{\Bar{k}}$. Note that despite the name, if $[A]\neq 0$ in $\Br(k)$, then $\bP(A)$ has no
+rational points. Hence, if $C\subseteq\bP(A)$ is an elliptic normal curve, then $C$ has no rational points either, so it is a
+genus $1$ curve only, not an elliptic curve.
 
 \begin{theorem}\label{mainthm}
-    Let $k$ be a number field, $p$ be a prime number, and $A$ be a central simple algebra of degree $p$ over $k$. Then there exists an elliptic normal curve $C\subset \bP(A)$ over $k$. In particular, the central simple algebra $A_{k(C)}$ is split over $k(C)$.
+    Let $k$ be a number field, $p$ be a prime number, and $A$ be a central simple algebra of degree
+    $p$ over $k$. Then there exists an elliptic normal curve $C\subset \bP(A)$ over $k$. In
+    particular, $C$ splits $A$.
 \end{theorem}
+
+In fact, our method works for central simple algebras of more general square-free integer degrees $N$, which we
+call $\GL_2$-general, meaning that if $p\;|\;N$, then the order of a $p$-Sylow subgroup of
+$\GL_2(\bZ/N)$ is $p$.
+
+
+
 
 
 \section{Hilbert schemes of elliptic normal curves}
@@ -527,8 +583,9 @@ Let $k$ be a field, let $\Bar{k}$ be a separable closure of $k$, let $n\geq 1$ b
     \item if $\Bar{v}\in V_{E,A}(\Bar{k})$, the geometric stabilizer $H_{\Bar{v}}\subset \mathrm{SL}(A_{\Bar{k}})\simeq \mathrm{SL}_n$ is conjugate to $\mathrm{He}_n$. 
     \item for all fields extensions $K/k$, $V_{E/A}(K)\neq\emptyset$ if and only if there exist an elliptic normal curve $C\subset \bP(A_K)$ over $K$ and an isomorphism of elliptic curves $J(C)\simeq E_K$.
     \end{itemize}
-    
 \end{proposition}
+
+
 
 
 \section{Unramified Brauer group calculations}
@@ -543,16 +600,24 @@ In this section, we let $k$ be a field of characteristic zero.
     subgroup the group $\Br_0(V)=\im(\Br(k)\rightarrow\Br(V))$.
 \end{definition}
 
-Suppose that $k$ is a number field, let $\Omega_k$ be the set of places of $k$ and, for every $v \in \Omega_k$, write $\text{inv}_v: Br(k_v) \to \mathbb{Q}/\mathbb{Z}$ for the Hasse invariant. We have the Brauer-Manin pairing
+Suppose that $k$ is a number field, let $\Omega_k$ be the set of places of $k$ and, for every $v \in \Omega_k$, write $\text{inv}_v: Br(k_v) \to \mathbb{Q}/\mathbb{Z}$ for the Hasse invariant. We have the Brauer--Manin pairing
 \[
 Br_\nr(V) \times \prod_{v \in \Omega_k} V(k_v) \to \mathbb{Q}/\mathbb{Z}, \qquad (\beta, (x_v)) \mapsto \sum_{v \in \Omega_k} \text{inv}_v \, \beta(x_v).
 \]
-Note that $\sum_{v \in \Omega_k} \text{inv}_v \, \beta(x_v)$ is finite because $\beta$ is unramified. The subset of $\prod_{v \in \Omega_k} V(k_v)$ consisting of the $(x_v)_{v\in \Omega_k}$ that are orthogonal to $\Br_\nr(V)$ with respect to the Brauer-Manin pairing is called the Brauer-Manin set. Class field theory implies that the image of $V(k)$ in $\prod_{v \in \Omega_k} V(k_v)$ is contained in the Brauer-Manin set.
+Note that $\sum_{v \in \Omega_k} \text{inv}_v \, \beta(x_v)$ is finite because $\beta$ is
+unramified. The subset of $\prod_{v \in \Omega_k} V(k_v)$ consisting of the $(x_v)_{v\in \Omega_k}$
+that are orthogonal to $\Br_\nr(V)$ with respect to the Brauer--Manin pairing is called the
+Brauer--Manin set. The standard exact sequence
+$$0\rightarrow\Br(k)\rightarrow\bigoplus_v\Br(k_v)\xrightarrow{\sum\inv_v}\bQ/\bZ\rightarrow 0$$ of class field theory implies that the image of $V(k)$ in $\prod_{v \in \Omega_k} V(k_v)$ is contained in the Brauer--Manin set.
 
 The following theorem is due to Demeio \cite{}.
 
 \begin{theorem}[Demeio]
-    Let $k$ be a number field, let $V$ be a homogeneous space of a semi-simple and simply connected linear group $G$ with finite solvable geometric stabilizers, and let $V_c$ be a smooth compactification of $V$. Then $V_c(k)$ is dense in the Brauer–Manin set of $V_c$ with respect to the product of the $v$-adic topologies. In particular, if the Brauer-Manin set of $V$ is non-empty, then $V$ has a $k$-rational point.
+    Let $k$ be a number field, let $V$ be a homogeneous space of a semi-simple and simply connected
+    linear group $G$ with finite solvable geometric stabilizers, and let $V^c$ be a smooth
+    compactification of $V$. Then $V^c(k)$ is dense in the Brauer–Manin set of $V^c$ with respect to
+    the product of the $v$-adic topologies. In particular, if the Brauer--Manin set of $V$ is
+    non-empty, then $V$ has a $k$-rational point.
 \end{theorem}
 
 \subsection{The unramified Brauer group of a homogeneous space}
@@ -682,7 +747,6 @@ where $\sigma^*$ is the pull-back map along $\mathbb{Z} \rightarrow G$, $1 \maps
     where the rows come from the Hochschild-Serre spectral sequence and the vertical arrows are restriction maps.
 \end{proof}
 
-\section{The local-global principle}
 
 
 \section{Proof of Theorem \ref{mainthm}}
