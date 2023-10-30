@@ -585,7 +585,8 @@ certain Hilbert scheme constructions. Namely, if $E$ is an elliptic curve, we le
 $C$ in $\bP(A)$ together with a fixed isomorphism $\Pic_{C/k}^0\iso E$.
 This is a smooth scheme which is an $\Aut_{E/k}$-torsor over $V_{j(E)}^A$, the closed subscheme of the
 Hilbert scheme of elliptic normal curves in $\bP(A)$ whose Jacobians have $j$-invariant $j(E)$.
-Here, $\Aut_{E/k}$ is the group scheme of automorphisms of the elliptic curve $E$.
+Here, $\Aut_{E/k}$ is the group scheme of automorphisms of the elliptic curve $E$, i.e.,
+automorphisms of the scheme $E$ which preserve the basepoint $0\in E$.
 
 We prove that for countably many $j$-invariants $j_0$ there are judicious choices of $E$ with
 $j(E)=j_0$ such that the scheme $V_E^A$ has $k_v$-points for all places $v$. Then, we show that for
@@ -859,6 +860,37 @@ Now, let $K=\bQ$, $p$ a prime, and $\ell_1,\ldots,\ell_r$ other primes.
     We now show that $\Br_{1,\nr}(V_{E,A})=\Br_0(V_{E,A})$. Let $k'=\Bar{k}^{\mathrm{Ker}\chi}$, let $\Delta= \Gamma_{k'}$ be the inverse image of a $p$-Sylow subgroup of $\mathrm{Out}(H_{\Bar{v}})$, and let $k''$ be the extension of $k'$ fixed by $\Delta$. By ???, we have $\Br_{1,\nr}((V_{E,A})_{k''})=\Br_0((V_{E,A})_{k''})$. By ???, we deduce that $\Br_{1,\nr}((V_{E,A})_{k'})=\Br_0((V_{E,A})_{k'})$. Finally, by ???, we obtain that $\Br_{1,\nr}(V_{E,A})=\Br_0(V_{E,A})$. We conclude by ???.
     \end{proof}
 
+
+\section{Future directions}
+
+\paragraph{Are there ever unramified Brauer classes?} We can prove that under certain assumptions on
+$E$ that the split form $V_E$ has no non-constant unramified classes. Are there ever non-constant
+unramified classes? Either in the split or the non-split case? One way to show this would be to
+prove that $\Pic_{V^c_E/k}$ is a constant lattice, so that $\H^1(\Spec k,\Pic_{V^c_E/k})=0$. Now,
+I'm not sure how to prove this, but Vakil and Zinger study
+in~\cite{vakil-zinger,vakil-zinger-announce} compactificiations of the Hilbert scheme $V$ of elliptic normal
+curves. This is obtained at blowing up at certain naturally defined types of degenerations. These
+subspaces are defined over $\bZ$ (or perhaps $\bZ[\tfrac{1}{N}]$) and their arguments give
+compactifications of $V_{j(E)}^\alpha$ as well. I wonder, since everything is so stable, if this is
+enough to make a geometric argument about $\Pic_{V^c_E/k}$.
+
+Relatedly, there is a surjective map $\Pic_{V^c_E/k}\rightarrow\Pic_{V_E/k}$. I would love to know
+that $\Pic_{V^c_E/k}$ were torsion free so that the kernel of this map were also torsion free. In
+fact, is it the case that for any smooth projective {\em rational} variety one hac $\Pic_{X/k}$ is
+torsion free?
+
+The idea would then be to argue that as $E$ varies over the moduli of elliptic curves one gets some
+lattice of fixed rank. Then, one should argue that $\pi_1\bA^1=0$ to conclude that in fact there is
+no variation and make some further arguments to conclude that $\Pic_{V^c_E/k}$ is a constant
+lattice, from which it would follow that the unramified classes are always constant. Is this
+feasible at all?
+
+\paragraph{Can we just compute Brauer--Manin directly?} We have such control over the local elements
+of $V_E^k$ that it tempting to show directly that there are elements in the Brauer--Manin fixed
+locus. The issue is that even in the split case given $\alpha\in\Br(V_E)$ and $x\in V_E(k_v)$ it is
+hard to understand what $x^*\alpha$ is.
+Nevertheless, this should be entirely controlled by the geometry of the situation. If possible, we
+could presumably generalize Theorem~\ref{mainthm} to all $N$.
 
 \small
 \bibliographystyle{amsplain}
