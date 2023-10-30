@@ -524,11 +524,11 @@ to say whether there exists a smooth proper geometrically connected genus $1$ cu
 $k$ such that the image of $\alpha$ in $\Br(k(C))$ vanishes.
 
 The genus $1$ curve splitting problem, and variants of it, have been considered
-in~\cite{dejong-ho,ho-lieblich,antieau-auel,huybrechts-mattei}. The problem of determining
+in~\cite{dejong-ho,ho-lieblich,antieau-auel,saltman-genus,huybrechts-mattei}. The problem of determining
 which Brauer classes are split by a given genus $1$ curve has been studied
 by~\cite{ciperiani-krashen}, who give algorithms over number fields.
 
-Here is a brief summary of the state of the art; for more details, see~\cite{antieau-auel}.
+Here is a brief summary of what is known; for more details and examples, see~\cite{antieau-auel}.
 \begin{enumerate}
     \item[(a)] Over an arbitrary field, geometric arguments using the linear algebra of vector
         bundles on Severi--Brauer varieties show that central simple algebras of
@@ -591,7 +591,8 @@ We prove that for countably many $j$-invariants $j_0$ there are judicious choice
 $j(E)=j_0$ such that the scheme $V_E^A$ has $k_v$-points for all places $v$. Then, we show that for
 all but finitely many of these choices there is no Brauer--Manin obstruction to the existence of
 rational points by showing that the unramified Brauer group of $V_E^A$ is the image
-of $\Br(k)\rightarrow\Br(V_E^A)$. As $V_E^A$ is geometrically a homogeneous space for $\SL_N$ with
+of $\Br(k)\rightarrow\Br(V_E^A)$.\footnote{This part of our argument is the only one where we need
+to fix $N$ to be $\GL_2$-general.} As $V_E^A$ is geometrically a homogeneous space for $\SL_N$ with
 stabilizer a Heisenberg group of order $N^3$, this is already enough to conclude that for these $E$ the scheme $V_E^A$ has a
 $0$-cycle of degree $1$ by a theorem of \BA{who?}. We conclude by using \BA{forthcoming} work of Demeio,
 which shows that for spaces which are geometrically homogeneous under actions of semisimple simply
@@ -691,7 +692,7 @@ The map $\delta$ is trivial if $V$ admits a zero-cycle of degree $1$ or if $k$ i
 Let $e$ denote the outer exponent of $\overline{H}$. We fix a finite Galois subextension $L/k$ of $k/k$, with Galois group $G = \text{Gal}(L/k)$, satisfying the following three conditions:
 (1) $L$ contains all $e$-th roots of unity;
 (2) $V(L) \neq \emptyset$;
-(3) the natural outer action of $\Gamma_k$ on $\overline{H}$ factors through $G = \text{Gal}(L/k).
+(3) the natural outer action of $\Gamma_k$ on $\overline{H}$ factors through $G = \text{Gal}(L/k)$.
 
 In particular, the action of $\Gamma_k$ on both $\overline{H}_{ab}$ and $\hat{\overline{H}}_{ab}$ factors through $G$: we may, and will, consider these two abelian groups as $G$-modules and view $H^1(G, \hat{\overline{H}}_{ab})$ as a subgroup of $H^1(k, \hat{\overline{H}}_{ab})$ via the inflation map $H^1(G, \hat{\overline{H}}_{ab}) \hookrightarrow H^1(k, \hat{\overline{H}}_{ab})$.
 
@@ -705,15 +706,14 @@ where $\sigma^*$ is the pull-back map along $\mathbb{Z} \rightarrow G$, $1 \maps
 
 \end{comment}
 
-[...]
 
 
-\begin{theorem}[...]
+\begin{theorem}
     There is an equality
-\begin{align*}
-    \Br_{1,\nr}(V)/\Br_0(V) = \{\beta \in H^1(G, \hat{H}^{\mathrm{ab}}_{\Bar{v}}) \,|\, \delta(\beta) = 0 \text{ and } u \cup \sigma^*\beta = 1 \text{ in $\mu_\infty$}\\
-    \text{for all $u \in \hat{H}_{\Bar{v}}$ and $\sigma \in G$ such that $\sigma[u] = [u^{\chi(\sigma)}]$ in $\hat{H}_{\Bar{v}}/\text{Conj}$}\}.
-\end{align*}
+    \begin{align*}
+        \Br_{1,\nr}(V)/\Br_0(V) = \{\beta \in H^1(G, \hat{H}^{\mathrm{ab}}_{\Bar{v}}) \,|\, \delta(\beta) = 0 \text{ and } u \cup \sigma^*\beta = 1 \text{ in $\mu_\infty$}\\
+        \text{for all $u \in \hat{H}_{\Bar{v}}$ and $\sigma \in G$ such that $\sigma[u] = [u^{\chi(\sigma)}]$ in $\hat{H}_{\Bar{v}}/\text{Conj}$}\}.
+    \end{align*}
 \end{theorem}
 
 
@@ -791,6 +791,60 @@ where $\sigma^*$ is the pull-back map along $\mathbb{Z} \rightarrow G$, $1 \maps
     \end{tikzcd}
     \]
     where the rows come from the Hochschild-Serre spectral sequence and the vertical arrows are restriction maps.
+\end{proof}
+
+
+
+\section{Local points everywhere via Tate curves}
+
+\subsection{Local fields}
+
+Suppose that $K$ is a local field with uniformizer $\varpi$ and residue field $k\iso\bF_{\ell^f}$ and that $E$ is an elliptic curve over $K$. Then, Tate and Milne 
+showed that there is a non-degenerate continuous pairing $E(K)\times\WC(E/K)\rightarrow\bQ/\bZ$
+where $E(K)$ is given the topology arising from the local field and $\WC(E/K)$ is given the discrete
+topology.
+
+Assume that $p$ is a prime invertible in $k$ and so large that no elliptic curve over $k$ admits
+a $p$-torsion point (for example via the Hasse bound $|p-\ell^f-1|>2\sqrt{\ell^f}$).
+In order for $\WC(E/K)$ to admit a $p$-torsion point, by the Tate pairing, we must thus have that
+$E$ has split multiplicative
+reduction and that $p$ divides $-v_{\varpi}(j(E))=v_\varpi(\Delta(E))$.
+
+We can always arrange this by letting $E$ be the Tate curve
+$E=K^\times/(\varpi^p)^{\bZ}$, which has split multiplicative reduction
+and $j$-invariant with $\varpi$-adic valuation $-p$.
+
+When $p$ is not large, the situation for general $E$ is less clear, but it is still the case that the Tate curve
+$E=K^\times/(\varpi^p)$ will have a torsor splitting the $p$-torsion Brauer class (at least if $p$
+is invertible in $K$).
+
+
+
+\subsection{Elliptic curves with split multiplicative reduction at specified primes}
+
+Now, let $K=\bQ$, $p$ a prime, and $\ell_1,\ldots,\ell_r$ other primes.
+
+\begin{construction}\label{const:multiplicative}
+    Let $E$ be an elliptic curve over $\bQ$ with $j$-invariant
+    $$j(E)=\frac{1}{\ell_1^p\cdots\ell_r^p}.$$
+    At each completion, $E_{\bQ_{\ell_i}}$ is a quadratic twist of a Tate curve
+    (see~\cite[Thm.~C.14.1]{silverman}). Let $\chi_i$ denote the corresponding $i$th quadratic character. By the
+    Grunwald--Wang theorem, there is a character $\chi$ over $\bQ$ such that $\chi$ completes to
+    each $\chi_i$. It follows that the quadratic twist $E_\chi$, which has the same $j$-invariant,
+    has split multiplicative reduction at each $\ell_i$.
+\end{construction}
+
+\begin{proposition}
+    Let $k$ be a global field and let $A$ be a central simple algebra over $k$, ramified at finite
+    primes $\pi_1,\ldots,\pi_r$. For any $j$-invariant $j_0$ satisfying
+    $v_{\pi_i}(j)=-N$ for $1\leq i\leq r$ there is an elliptic curve $E$ defined over $k$ of
+    $j$-invraiant $j(E)=j_0$ such that $V_E^A(k_v)$ is non-empty for all places $v$.
+\end{proposition}
+
+\begin{proof}
+    At finite places, this follows from the construction. At infinite real places $v$, $E(k_v)$ admits a
+    $k_v$-rational $2$-torsion point and hence the restriction of $\alpha$ to $k_v$ is split by an
+    $E$-torsor corresponding to a choice of dual of this $2$-torsion point under the Tate pairing.
 \end{proof}
 
 
