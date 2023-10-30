@@ -528,7 +528,7 @@ in~\cite{dejong-ho,ho-lieblich,antieau-auel,huybrechts-mattei}. The problem of d
 which Brauer classes are split by a given genus $1$ curve has been studied
 by~\cite{ciperiani-krashen}, who give algorithms over number fields.
 
-Here is a summary of the state of the art.
+Here is a brief summary of the state of the art; for more details, see~\cite{antieau-auel}.
 \begin{enumerate}
     \item[(a)] Over an arbitrary field, geometric arguments using the linear algebra of vector
         bundles on Severi--Brauer varieties show that central simple algebras of
@@ -577,7 +577,26 @@ that these sequences are the same and I checked roughly up to $N=9997$.}} Among 
 $\GL_2$-general:
 $$35,\quad 65,\quad 77,\quad 85.$$
 Thus, for example, for $N=35,65,77,85$, every twisted form of $\bP^{N-1}$ over a number field $k$ contains an
-elliptic normal curve.
+elliptic normal curve. For numbers up to $10\,000$ there are $1229$ primes and $2510$ numbers which
+are $\GL_2$-general.
+
+Our proof of Theorem~\ref{mainthm} is to rephrase the problem as one of finding rational points on
+certain Hilbert scheme constructions. Namely, if $E$ is an elliptic curve, we let $V_E^A$ be the scheme of elliptic normal curves
+$C$ in $\bP(A)$ together with a fixed isomorphism $\Pic_{C/k}^0\iso E$.
+This is a smooth scheme which is an $\Aut_{E/k}$-torsor over $V_{j(E)}^A$, the closed subscheme of the
+Hilbert scheme of elliptic normal curves in $\bP(A)$ whose Jacobians have $j$-invariant $j(E)$.
+Here, $\Aut_{E/k}$ is the group scheme of automorphisms of the elliptic curve $E$.
+
+We prove that for countably many $j$-invariants $j_0$ there are judicious choices of $E$ with
+$j(E)=j_0$ such that the scheme $V_E^A$ has $k_v$-points for all places $v$. Then, we show that for
+all but finitely many of these choices there is no Brauer--Manin obstruction to the existence of
+rational points by showing that the unramified Brauer group of $V_E^A$ is exactly the image
+of $\Br(k)\rightarrow\Br(V_E^A)$. As $V_E^A$ is geometrically a homogeneous space for $\SL_N$ with
+stabilizer a Heisenberg group of order $N^3$, this is already enough to conclude that for these $E$ the scheme $V_E^A$ has a
+$0$-cycle of degree $1$ by a theorem of \BA{who?}. We conclude by using \BA{forthcoming} work of Demeio,
+which shows that for spaces which are geometrically homogeneous under actions of semisimple simply
+connected algebraic groups with solvable stabilizers, like the Heisenberg groups of order $N^3$ in
+$\SL_N$, the Brauer--Manin obstruction to rational points is the only one.
 
 
 
