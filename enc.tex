@@ -509,35 +509,133 @@
 
 \section{Introduction}
 
+Let $k$ be a field, let $\Bar{k}$ be a separable closure of $k$, let $n\geq 1$ be an integer, and let $A$ be a central simple algebra of degree $n$ over $k$. We write $\bP(A)$ for the Severi-Brauer variety of $A$. By definition, an elliptic normal curve (genus-one normal curve?) in $\bP(A)$ is a smooth projective genus-one curve $C\subset \P(A)$ such that $C_{\Bar{k}}\subset \bP(A_{\Bar{k}})\simeq \bP_{\Bar{k}}^{n-1}$ has degree $n$ and is not contained in any hyperplane of $\bP_{\Bar{k}}^{n-1}$. (This definition is independent of the choice of the isomorphism $\bP(A_{\Bar{k}})\simeq \bP_{\Bar{k}}^{n-1}$.)
+
+\begin{theorem}\label{mainthm}
+    Let $k$ be a number field, $p$ be a prime number, and $A$ be a central simple algebra of degree $p$ over $k$. Then there exists an elliptic normal curve $C\subset \bP(A)$ over $k$. In particular, the central simple algebra $A_{k(C)}$ is split over $k(C)$.
+\end{theorem}
+
+
 \section{Hilbert schemes of elliptic normal curves}
+
+
+[...]
+
+\begin{proposition}
+    Let $k$ be a field, $E$ be an elliptic curve, $A$ be a central simple algebra of degree $n\geq 1$ over $k$. There exists a $\mathrm{SL}(A)$-homogeneous space $V_{E,A}$ such that:
+    \begin{itemize}
+    \item if $\Bar{v}\in V_{E,A}(\Bar{k})$, the geometric stabilizer $H_{\Bar{v}}\subset \mathrm{SL}(A_{\Bar{k}})\simeq \mathrm{SL}_n$ is conjugate to $\mathrm{He}_n$. 
+    \item for all fields extensions $K/k$, $V_{E/A}(K)\neq\emptyset$ if and only if there exist an elliptic normal curve $C\subset \bP(A_K)$ over $K$ and an isomorphism of elliptic curves $J(C)\simeq E_K$.
+    \end{itemize}
+    
+\end{proposition}
+
 
 \section{Unramified Brauer group calculations}
 
+\subsection{Preliminaries on unramified Brauer groups of homogeneous spaces}
+
+In this section, we let $k$ be a field of characteristic zero.
+
 \begin{definition}
-    If $V$ is a smooth, geometrically integral scheme over a field $k$, we let $\Br_{\nr}(V)$ denote 
-    the subgroup of $\Br(V)$ consisting of classes which extend to a smooth proper model of $V$. We
-    let $\Br_1(V)$ be the subgroup of $\Br(V)$ of classes which vanish after extension of scalars to
-    the algebraic closure of $k$. And, we let $\Br_{1,\nr}(V)=\Br_\nr(V)\cap\Br_1(V)$, the subgroup
-    of $\Br(V)$ of geometrically trivial unramified Brauer classes. This group contains as a
+    If $V$ is a smooth, geometrically integral scheme over $k$. The unramified Brauer group $\Br_{\nr}(V)\subset \Br(V)$ of $V$ is defined as the image of $\Br(V^c)$ in $\Br(V)$, where $V^c$ is a smooth projective compactification of $V$. (The definition of $\Br_{\nr}(V)$ does not depend on the choice of $V^c$.) We
+    let $\Br_1(V)$ be the kernel of the restriction map $\Br(V)\to \Br(V_{\Bar{k}})$. We let $\Br_{1,\nr}(V)=\Br_\nr(V)\cap\Br_1(V)$ be the subgroup of $\Br(V)$ of geometrically trivial unramified Brauer classes. This group contains as a
     subgroup the group $\Br_0(V)=\im(\Br(k)\rightarrow\Br(V))$.
 \end{definition}
 
+Suppose that $k$ is a number field, let $\Omega_k$ be the set of places of $k$ and, for every $v \in \Omega_k$, write $\text{inv}_v: Br(k_v) \to \mathbb{Q}/\mathbb{Z}$ for the Hasse invariant. We have the Brauer-Manin pairing
+\[
+Br_\nr(V) \times \prod_{v \in \Omega_k} V(k_v) \to \mathbb{Q}/\mathbb{Z}, \qquad (\beta, (x_v)) \mapsto \sum_{v \in \Omega_k} \text{inv}_v \, \beta(x_v).
+\]
+Note that $\sum_{v \in \Omega_k} \text{inv}_v \, \beta(x_v)$ is finite because $\beta$ is unramified. The subset of $\prod_{v \in \Omega_k} V(k_v)$ consisting of the $(x_v)_{v\in \Omega_k}$ that are orthogonal to $\Br_\nr(V)$ with respect to the Brauer-Manin pairing is called the Brauer-Manin set. Class field theory implies that the image of $V(k)$ in $\prod_{v \in \Omega_k} V(k_v)$ is contained in the Brauer-Manin set.
+
+The following theorem is due to Demeio \cite{}.
+
+\begin{theorem}[Demeio]
+    Let $k$ be a number field, let $V$ be a homogeneous space of a semi-simple and simply connected linear group $G$ with finite solvable geometric stabilizers, and let $V_c$ be a smooth compactification of $V$. Then $V_c(k)$ is dense in the Brauer–Manin set of $V_c$ with respect to the product of the $v$-adic topologies. In particular, if the Brauer-Manin set of $V$ is non-empty, then $V$ has a $k$-rational point.
+\end{theorem}
+
+\subsection{The unramified Brauer group of a homogeneous space}
+Let $k$ be a field, let $G$ be a simply connected semisimple $k$-group, let $V$ be a homogeneous space under $G$, let $\Bar{v}\in V(\Bar{k})$ be a geometric point of $V$, and let $H_{\Bar{v}}$ be the geometric stabilizer of $\Bar{v}$. We suppose that $H_{\Bar{v}}$ is finite.
+
+Let $G_{\Bar{v}} \subseteq G(k) \rtimes \Gamma_k$ is the subgroup consisting of those pairs $(g, \sigma)$ such that $g\sigma(\Bar{v}) = \Bar{v}$. We have a short exact sequence of abstract groups
+\[
+1 \to H_{\Bar{v}} \to G_{\Bar{v}} \to \Gamma_k \to 1.
+\]
+This short exact sequence induces an outer action of $\Gamma_k$ on $H_{\Bar{v}}$, that is, a homomorphism $\Gamma_k\to \mathrm{Out}(H_{\Bar{v}})$. 
+
+We write $\mu_{\infty}\subset \Bar{k}^\times$ for the $\Gamma_k$-module given by the roots of unity in $\Bar{k}^\times$. Let $H^{\mathrm{ab}}_{\Bar{v}}$ be the abelianization of  $H^{\mathrm{ab}}$, and let $\hat{H}^{\mathrm{ab}}_{\Bar{v}}= \mathrm{Hom}(H^{\mathrm{ab}}_{\Bar{v}}, \mu_{\infty})$ be the Cartier dual of $H^{\mathrm{ab}}_{\Bar{v}}$. By \cite{}, we have an isomorphism of $\Gamma_k$-modules $\text{Pic}(\Bar{V})\simeq \hat{H}^{\mathrm{ab}}_{\Bar{v}}$ As a consequence, the Hochschild–Serre spectral sequence provides an exact sequence:
+\[
+\text{Br}(k) \to \text{Br}_1(V) \to H^1(k, \hat{H}^{\mathrm{ab}}_{\Bar{v}}) \xrightarrow{\delta} H^3(k, \bar{k}^*).
+\]
+The map $\delta$ is trivial if $V$ admits a zero-cycle of degree $1$ or if $k$ is a number field. If this is the case, we obtain a short exact sequence
+\[0\to \Br_0(V)\to \Br_1(V)\to H^1(k, \hat{H}^{\mathrm{ab}}_{\Bar{v}})\to 0.\]
+
+
+\begin{comment}
+\begin{definition}
+    Let $H$ be a group of exponent $d\geq 1$. We write $H/\textrm{cong}$ for the set of conjugacy classes of $H$. If $h\in H$, we denote by $[h]$ the conjugacy class of $h$. The group $(\Z/d\Z)^{\times}$ acts on $H/\textrm{cong}$ by $m\cdot [x]=[x^m]$. By definition, the outer exponent of $H$ is the smallest positive divisor $e$ of $d$ such that this action factors through the quotient map $(\mathbb{Z}/d)^{\times} \rightarrow (\mathbb{Z}/e)^{\times}$. 
+\end{definition}
+
+Let $e$ denote the outer exponent of $\overline{H}$. We fix a finite Galois subextension $L/k$ of $k/k$, with Galois group $G = \text{Gal}(L/k)$, satisfying the following three conditions:
+(1) $L$ contains all $e$-th roots of unity;
+(2) $V(L) \neq \emptyset$;
+(3) the natural outer action of $\Gamma_k$ on $\overline{H}$ factors through $G = \text{Gal}(L/k).
+
+In particular, the action of $\Gamma_k$ on both $\overline{H}_{ab}$ and $\hat{\overline{H}}_{ab}$ factors through $G$: we may, and will, consider these two abelian groups as $G$-modules and view $H^1(G, \hat{\overline{H}}_{ab})$ as a subgroup of $H^1(k, \hat{\overline{H}}_{ab})$ via the inflation map $H^1(G, \hat{\overline{H}}_{ab}) \hookrightarrow H^1(k, \hat{\overline{H}}_{ab})$.
+
+We let $\chi: G \rightarrow (\mathbb{Z}/e)^*$ be the homomorphism induced by the cyclotomic character and remark that the outer action of $G$ on $\overline{H}$ induces an action of $G$ on the set $\overline{H}/(conjugacy)$ of conjugacy classes of the group $\overline{H}$. 
+
+Let $\sigma \in G$ and $u \in \overline{H}$ satisfy the equality $\sigma[u] = [u^{\chi(\sigma)}]$ in $\overline{H}/(conjugacy)$. Then the image $u$ of $u$ in $\overline{H}_{ab}$ satisfies $\sigma(u) = \chi(\sigma)u$, and is hence $\sigma$-invariant when considered as an element of the twisted Cartier dual $\text{Hom}(\hat{\overline{H}}_{ab}, \mu_\infty)$ of $\hat{\overline{H}}_{ab} = \text{Hom}(\overline{H}_{ab}, \mu_\infty)$, where $\mu_\infty$ denotes the group of roots of unity in $k^*$ equipped with the trivial Galois action. (This bidual is canonically isomorphic to $\overline{H}_{ab}$ as an abelian group, with the Galois action twisted by $\chi$.) In particular, if we let $\mathbb{Z}$ act on $\text{Hom}(\hat{\overline{H}}_{ab}, \mu_\infty)$ via $\sigma$, then we may view $u$ as an element of $H^0(\mathbb{Z}, \text{Hom}(\hat{\overline{H}}_{ab}, \mu_\infty))$. We hence obtain a composite map:
+\[
+H^1(G, \hat{\overline{H}}_{ab}) \xrightarrow{\sigma^*} H^1(\mathbb{Z}, \hat{\overline{H}}_{ab}) \xrightarrow{x \mapsto u \cup x} H^1(\mathbb{Z}, \mu_\infty) = \mu_\infty,
+\]
+where $\sigma^*$ is the pull-back map along $\mathbb{Z} \rightarrow G$, $1 \mapsto \sigma$.
+
+\end{comment}
+
+[...]
+
+
+\begin{theorem}[...]
+    There is an equality
+\begin{align*}
+    \Br_{1,\nr}(V)/\Br_0(V) = \{\beta \in H^1(G, \hat{H}^{\mathrm{ab}}_{\Bar{v}}) \,|\, \delta(\beta) = 0 \text{ and } u \cup \sigma^*\beta = 1 \text{ in $\mu_\infty$}\\
+    \text{for all $u \in \hat{H}_{\Bar{v}}$ and $\sigma \in G$ such that $\sigma[u] = [u^{\chi(\sigma)}]$ in $\hat{H}_{\Bar{v}}/\text{Conj}$}\}.
+\end{align*}
+\end{theorem}
+
+
+
+
+\subsection{Elliptic normal curves}
+
+
+
 \begin{proposition}
-    Let $E$ be an elliptic curve over a field $k$ and let $N$ be an integer prime to the
-    characteristic of $k$. Let $V_E$ be the
+    Let $E$ be an elliptic curve over a field $k$ of characteristic zero and let $N$ be an integer. Let $V_E$ be the
     Hilbert scheme of elliptic normal curves $C$ in $\bP^{N-1}_k$
     with a fixed isomorphism $\Pic_{C/k}^0\iso E$. 
     If the image of the Galois group of $k$ in $\GL_2(\bZ/N)$ associated to $E[N]$
     is conjugate to the unipotent group $$U_2=\left\{\begin{pmatrix}1&*\\0&1\end{pmatrix}\colon
-    *\in\bZ/N\right\},$$ then, $$\Br(k)\rightarrow\Br_{1,\nr}(V_E)$$
+    *\in\bZ/N\right\},$$ then the pullback map $$\Br(k)\rightarrow\Br_{1,\nr}(V_E)$$
     is an isomorphism.
 \end{proposition}
 
 \begin{proof}
     Since $V_E$ has a rational point, corresponding to $E$ embedded into $\bP^{N-1}_k$
     via a line bundle $\Lscr$ of degree $N$ and a choice of basis of $\H^0(E,\Lscr)$, the map
-    $\Br(k)\rightarrow\Br_{1,\nr}(V_E)$ is injective with image $\Br_0(V)$. We use the criterion of
-    Harpaz--Wittenberg~\cite{harpaz-wittenberg-massey}.
+    $\Br(k)\rightarrow\Br_{1,\nr}(V_E)$ is injective with image $\Br_0(V)$. 
+    
+    In order to prove that $\Br(k)\rightarrow\Br_{1,\nr}(V_E)$ is surjective, we use the criterion of
+    Harpaz--Wittenberg~\cite{harpaz-wittenberg-massey}. The Hochschild-Serre spectral sequence yields an exact sequence
+    \[\Br(k)\to \Br(V_E)\to H^1(k,\Pic(\Bar{V}))\xrightarrow{\delta}H^3(k,\Bar{k}^\times).\]
+    Here we have used the fact that $\Bar{k}[V_E]^\times=\Bar{k}^\times$, by Rosenlicht's Lemma \cite{}. Moreover, since $V_E(k)\neq \emptyset$, the map $\delta$ is equal to zero. Finally, by \cite{}, we have a $\Gamma_k$-equivariant isomorphism $\Pic(\Bar{V}_E)\simeq H^{\mathrm{ab}}_N$, and hence
+    \[\Pic(\Bar{V}_E)\simeq E[N](\Bar{k}).\]
+    
+    It follows that the map $\Br(V_E)\to H^1(k,\Pic(\Bar{V}))$ identifies $\Br(V_E)/\Br_0(V_E)$ with a subgroup of $H^1(k,E[N])$. We now apply \cite[Proposition 3.3]{harpaz-wittenberg-massey} to obtain the following. An element $\beta\in H^1(k,E[N])$ belongs to $\Br(V_E)/\Br_0(V_E)$ if and only if for all $\sigma\in \Gamma_k$ and $u\in H_N$ such that $\sigma(u)$ is conjugate to $u^{\chi(\sigma)}$, the pairing
+    \[E[N](\Bar{k})^{\langle\sigma\rangle}\times E[N](\Bar{k})/(\sigma-1)\to \mu_N(\Bar{k})\]
+    induced by the Weil pairing sends $(\beta_{\sigma},\Bar{u})$ to $1$. 
 \end{proof}
 
 \begin{remark}
@@ -547,12 +645,55 @@
 
 
 
+\begin{lemma}
+    Let $k$ be a field, let $N\geq 1$ be an integer invertible in $k$, let $\chi\in H^1(k,\Z/N\Z)$ and $a\in k^\times$, let $A\in \Br(k)$ be the Brauer class of the degree-$n$ central simple $k$-algebra $(\chi,a)$, and let $k'=\Bar{k}^{\mathrm{Ker}\chi}$. Let $E$ be an elliptic curve over $k$ such that $E[N](k')=\{0\}$, and let $V_E$ be the Hilbert scheme of elliptic normal curves $C$ in $\bP(A)$
+    with a fixed isomorphism $\Pic_{C/k}^0\iso E$. Then the restriction map
+    \[\Br_1(V_E)/\Br_0(V_E)\to \Br_1((V_E)_{k'})/\Br_0((V_E)_{k'})\]
+    is injective. In particular, if $\Br_{1,nr}((V_E)_{k'})=\Br_0((V_E)_{k'})$, then $\Br_{1,nr}(V_E)=\Br_0(V_E)$.
+\end{lemma}
+    
+\begin{proof}
+    By the inflation-restriction sequence, the kernel of the restriction map $H^1(k,E[N])\to H^1(k',E[N])$ is isomorphic to $H^1(k'/k,E[N](k'))$. Since $E[N](k')$ is trivial, so is $H^1(k'/k,E[N](k'))$, and hence $H^1(k,E[N])\to H^1(k',E[N])$ is injective.  The conclusion follows from a diagram chase in the following commutative diagram of exact sequences of abelian groups
+    \[
+    \begin{tikzcd}
+        0\arrow[r] &  \Br_0(V_E) \arrow[r] \arrow[d] & \Br_1(V_E) \arrow[r] \arrow[d] & H^1(k,E[N])\arrow[d,hook] \\
+        0\arrow[r] &  \Br_0((V_E)_{k'}) \arrow[r] & \Br_1((V_E)_{k'}) \arrow[r] & H^1(k',E[N])
+    \end{tikzcd}
+    \]
+    where the rows come from the Hochschild-Serre spectral sequence and the vertical arrows are restriction maps. 
+\end{proof}
 
+
+\begin{lemma}
+    Let $k$ be a field, let $N\geq 1$ be an integer invertible in $k$, let $E$ be an elliptic curve over $k$, let $V_E$ be the Hilbert scheme of elliptic normal curves $C$ in $\bP^{N-1}_k$
+    with a fixed isomorphism $\Pic_{C/k}^0\iso E$. Let $k'$ be a field extension of $k$, of degree prime to $N$. Then the restriction map
+    \[\Br_1(V_E)/\Br_0(V_E)\to \Br_1((V_E)_{k'})/\Br_0((V_E)_{k'})\]
+    is injective.
+\end{lemma}
+
+\begin{proof}
+    By the inflation-restriction sequence, the kernel of the restriction map $H^1(k,E[N])\to H^1(k',E[N])$ is isomorphic to $H^1(k'/k,E[N](k'))$. Since the order of $E[N](k')$ divides $N^2$ and $[k':k]$ is prime to $N$, the group $H^1(k'/k,E[N](k'))$ is trivial, and hence $H^1(k,E[N])\to H^1(k',E[N])$ is injective. The conclusion follows from a diagram chase in the following commutative diagram of exact sequences of abelian groups
+    \[
+    \begin{tikzcd}
+        0\arrow[r] &  \Br_0(V_E) \arrow[r] \arrow[d] & \Br_1(V_E) \arrow[r] \arrow[d] & H^1(k,E[N])\arrow[d,hook] \\
+        0\arrow[r] &  \Br_0((V_E)_{k'}) \arrow[r] & \Br_1((V_E)_{k'}) \arrow[r] & H^1(k',E[N])
+    \end{tikzcd}
+    \]
+    where the rows come from the Hochschild-Serre spectral sequence and the vertical arrows are restriction maps.
+\end{proof}
 
 \section{The local-global principle}
 
 
+\section{Proof of Theorem \ref{mainthm}}
 
+\begin{proof}
+    We may write $A=(\chi,a)$ for some $\chi\in H^1(k,\Z/N\Z)$ and $a\in k^\times$. 
+    
+    Let $V_{E,A}$ be the Hilbert scheme of elliptic normal curves $C$ in $\bP(A)$ with a fixed isomorphism $\Pic_{C/k}^0\iso E$. By ???, the collection of elliptic curves $E$ over $k$ such that $V_{E,A}(k_v)\neq \emptyset$ for every place $v$ of $k$ is infinite. By ???, the collection of elliptic curves $E$ over $k$ such that the group $E[p](k')$ is non-trivial is finite. Therefore, there exists an elliptic curve $E$ over $k$ such that $E[p](k')$ is trivial and $V_{E,A}(k_v)\neq \emptyset$ for every place $v$ of $k$.
+
+    We now show that $\Br_{1,\nr}(V_{E,A})=\Br_0(V_{E,A})$. Let $k'=\Bar{k}^{\mathrm{Ker}\chi}$, let $\Delta= \Gamma_{k'}$ be the inverse image of a $p$-Sylow subgroup of $\mathrm{Out}(H_{\Bar{v}})$, and let $k''$ be the extension of $k'$ fixed by $\Delta$. By ???, we have $\Br_{1,\nr}((V_{E,A})_{k''})=\Br_0((V_{E,A})_{k''})$. By ???, we deduce that $\Br_{1,\nr}((V_{E,A})_{k'})=\Br_0((V_{E,A})_{k'})$. Finally, by ???, we obtain that $\Br_{1,\nr}(V_{E,A})=\Br_0(V_{E,A})$. We conclude by ???.
+    \end{proof}
 
 
 \small
