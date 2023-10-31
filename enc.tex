@@ -813,7 +813,7 @@ The following theorem is due to Demeio \cite{}.
 	
 \subsection{Elliptic normal curves}
 	
-	\begin{proposition}
+	\begin{proposition}\label{sylow-case}
 		Let $E$ be an elliptic curve over a field $k$ of characteristic zero and let $N$ be an integer. Let $V_E$ be the
 		Hilbert scheme of elliptic normal curves $C$ in $\bP^{N-1}_k$
 		with a fixed isomorphism $\Pic_{C/k}^0\iso E$. 
@@ -845,7 +845,7 @@ The following theorem is due to Demeio \cite{}.
 	
 	
 	
-	\begin{proposition}
+	\begin{proposition}\label{restrict}
 	Let $k$ be a field, let $N\geq 1$ be an integer invertible in $k$, let $A\in \Br(k)$ be a Brauer class, let $k'/k$ be a finite field extension, and let $E$ be an elliptic curve over $k$. Suppose that either
 	\begin{enumerate}
 		\item $k'/k$ is Galois, $A_{k'}=0$ and $E[N](k')=\{0\}$, or
@@ -912,11 +912,9 @@ Now, let $K=\bQ$, $p$ a prime, and $\ell_1,\ldots,\ell_r$ other primes.
 	\section{Proof of Theorem \ref{mainthm}}
 	
 	\begin{proof}
-		We may write $A=(\chi,a)$ for some $\chi\in H^1(k,\Z/N\Z)$ and $a\in k^\times$. 
-		
 		Let $V_E^A$ be the Hilbert scheme of elliptic normal curves $C$ in $\bP(A)$ with a fixed isomorphism $\Pic_{C/k}^0\iso E$. By ???, the collection of elliptic curves $E$ over $k$ such that $V_E^A(k_v)\neq \emptyset$ for every place $v$ of $k$ is infinite. By ???, the collection of elliptic curves $E$ over $k$ such that the group $E[p](k')$ is non-trivial is finite. Therefore, there exists an elliptic curve $E$ over $k$ such that $E[p](k')$ is trivial and $V_E^A(k_v)\neq \emptyset$ for every place $v$ of $k$.
 		
-		We now show that $\Br_{1,\nr}(V_E^A)=\Br_0(V_E^A)$. Let $k'=\Bar{k}^{\mathrm{Ker}\chi}$, let $\Delta= \Gamma_{k'}$ be the inverse image of a $p$-Sylow subgroup of $\mathrm{Out}(H_{\Bar{v}})$, and let $k''$ be the extension of $k'$ fixed by $\Delta$. By ???, we have $\Br_{1,\nr}((V_E^A)_{k''})=\Br_0((V_E^A)_{k''})$. By ???, we deduce that $\Br_{1,\nr}((V_E^A)_{k'})=\Br_0((V_E^A)_{k'})$. Finally, by ???, we obtain that $\Br_{1,\nr}(V_E^A)=\Br_0(V_E^A)$. We conclude by ???.
+		We now show that $\Br_{1,\nr}(V_E^A)=\Br_0(V_E^A)$. Since $k$ is a number field, there exists a degree-$N$ cyclic Galois extension $k'/k$ such that $A_{k'}=0$ in $\Br(k')$. Let $\Delta\subset \Gamma_{k'}$ be the inverse image of a $p$-Sylow subgroup of $\mathrm{Out}(H_{\Bar{v}})$, and let $k'\subset k''\subset\Bar{k}$ be the finite extension of $k'$ fixed by $\Delta$. By Proposition \ref{sylow-case}, we have $\Br_{1,\nr}((V_E^A)_{k''})=\Br_0((V_E^A)_{k''})$. By Proposition \ref{restrict}, we first deduce that $\Br_{1,\nr}((V_E^A)_{k'})=\Br_0((V_E^A)_{k'})$, and then that $\Br_{1,\nr}(V_E^A)=\Br_0(V_E^A)$. We conclude by ???.
 	\end{proof}
 	
 	
