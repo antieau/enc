@@ -577,7 +577,7 @@ backref]{hyperref}
 	$\GL_2$-general:
 	$$35,\quad 65,\quad 77,\quad 85.$$
 	Thus, for example, for $N=35,65,77,85$, every twisted form of $\bP^{N-1}$ over a number field $k$ contains an
-	elliptic normal curve. For numbers up to $10\,000$ there are $1229$ primes and $2510$ numbers which
+	elliptic normal curve. Among numbers up to $10\,000$ there are $1229$ primes and $2510$ numbers which
 	are $\GL_2$-general.
 	
 	Our proof of Theorem~\ref{mainthm} is to rephrase the problem as one of finding rational points on
@@ -622,13 +622,99 @@ backref]{hyperref}
 	
 	\section{Hilbert schemes of elliptic normal curves}
 	
+	\begin{definition}
+		Fix $N\geq 3$. An elliptic normal curve in $\bP^{N-1}$ is the image of an embedding
+		$C\hookrightarrow\bP^{N-1}$ defined by a complete linear system of degree $N$ on a genus $1$
+		curve $C$ and a choice of a projective basis for the space of sections.
+	\end{definition}
 	
-	[...]
+	\begin{question}
+		What is the correct definition for $N=2$? What is the scheme of double covers of $\bP^1$
+		branched at four points?
+	\end{question}
+	
+	The elliptic normal curves define a smooth locus inside the Hilbert scheme of
+	$\bP^{N-1}$.
+	
+	\begin{construction}
+		Let $V(N)$ denote the Hilbert scheme of smooth elliptic normal curves in $\bP^{N-1}$. Taking the
+		Jacobian of the universal curve yields a surjective morphism $V(N)\rightarrow\Mscr_{1,1}$. Fix
+		an elliptic curve $E$ with $j$-invariant $j(E)$ and define $V_{j(E)}$ and
+		$V_{E_0}$ as pullbacks in the commutative diagram
+		$$\xymatrix{
+			V_{E}\ar[r]\ar[d]&V_{j(E)}\ar[r]\ar[d]&V(N)\ar[d]\\
+			\ast\ar[r]^{E_0}&\B\Aut_{E}\ar[r]\ar[d]&\Mscr_{1,1}\ar[d]^j\\
+			&\ast\ar[r]^{j(E)}&\bA^1.
+		}$$ 
+		of pullback squares. The map $V_{j(E)}\rightarrow V(N)$ is a closed embedding, while
+		$V(E)\rightarrow V_{j(E)}$ is the total space of an $\Aut_{E}$-torsor.
+		The scheme $V_{j(E)}$ represents the moduli problem of elliptic normal curves
+		$C\hookrightarrow\bP^{N-1}$ whose Jacobian
+		has $j$-invariant $j(E)$, while $V_E$ represents ths moduli problem of elliptic normal curves
+		$C\hookrightarrow\bP^{N-1}$ with a fixed isomorphism $\Pic^0_{C/k}\iso E$.
+	\end{construction}
+	
+	\begin{question}
+		Vakil and Zinger study a compactification of $V(N)$
+		in~\cite{vakil-zinger,vakil-zinger-announce}. How does their compactification interact with the
+		Jacobian fibration above?
+	\end{question}
 	
 	\begin{proposition}
-		Let $k$ be a field, $E$ be an elliptic curve, $A$ be a central simple algebra of degree $n\geq 1$ over $k$. There exists a $\mathrm{SL}(A)$-homogeneous space $V_E^A$ such that:
+		Fix an elliptic curve $E$ and an integer $N\geq 1$.
+		The action of $\PGL_N$ on $\bP^{N-1}$ induces an action on $V(N)$ which preserves $V_{j(E)}$ and
+		lifts to an action on $V_E$. This action makes $V_E$ into a non-empty homogenous space for $\PGL_N$ with
+		stabilizers isomorphic to $E[N]$.
+	\end{proposition}
+	
+	\begin{proof}
+		As $\PGL_N$ acts on $\bP^{N-1}$, it acts on the Hilbert scheme of $\bP^{N-1}$ and this action
+		preserves the locus $V(N)$ of elliptic normal curves and also the locus $V_{j(E)}$.
+		Given $g\in\PGL_N(k)$ and a rational point $x$ of $V_E$ corresponding to $C\hookrightarrow\bP^{N-1}$
+		together with an isomorphism $f\colon\Pic^0_{C/k}\rightarrow E$, the point $g\cdot x$
+		corresponds to $C\hookrightarrow\bP^{N-1}\xrightarrow{g}\bP^{N-1}$. As $g$ induces an isomorphism
+		$C\rightarrow g(C)$, there is an induced isomorphism
+		$\Pic^0_{g(C)/k}\xrightarrow{g^*}\Pic^0_{C/k}\xrightarrow{f}$, which shows that the action of
+		$\PGL_N$ lifts to $V_E$.
+		
+		To complete the proof, we work over an algebraically closed field $k$ and suppose that $x$ and $y$
+		are two points of $V_E(k)$ corresponding to two degree $N$ line bundles $\Lscr_x$ and
+		$\Lscr_y$ on $E$ and choices of bases $\{x_1,\ldots,x_N\}$ and $\{y_1,\ldots,y_N\}$ of
+		$\H^0(E,\Lscr_x)$ and $\H^0(E,\Lscr_y)$, respectively. Let $t$ be the point of $E$
+		corresponding to $\Lscr_x^{-1}\otimes\Lscr_y\in\Pic^0_{E/k}(k)\iso E(k)$. Then,
+		$t^*\Lscr_x\iso\Lscr_y$. Note that translation by a point of $E$ does not change the point of
+		$V_E$ since it is only the closed subscheme of $\bP^{N-1}$ which matters. Thus, we can assume
+		that $\Lscr_x=\Lscr_y$ and that the points of $V_E$ differ only by the choice of a projective basis of
+		$\H^0(\Lscr_y)$. Any two choices differ by an element of $\PGL_N$, which proves that $V_E$ is a
+		homogeneous space for $\PGL_N$. It remains to identify the stabilizer. Let $e$ be the identity
+		element of $E$ and let $\Lscr=\Oscr(Ne)$. Choose a projective basis for $\H^0(E,\Lscr)$. It is a \BA{standard}
+		fact that the subgroup of translations of $E$ that extend to automorphisms of $\bP^{N-1}$ is
+		exactly $E[N]$; in particular, there is a closed embedding $E[N]\rightarrow\PGL_N$. If
+		$g\in\PGL_N(k)$ stabilizes this point, then it acts as an isomorphism from $E$ to itself.
+		However, it must be a translation since if it were an outer automorphism it would change the
+		identification of $\Pic^0_{E/k}$ with $E$. By the standard fact, it follows that $g\in E[N](k)$.
+		Conversely, given $g\in E[N](k)$, we have for a degree $N$ line bundle $\Lscr$ that
+		$g^*\Lscr\iso\Lscr$. The corresponding element of $\PGL_N(k)$ is induced from our choice of
+		projective basis and the isomorphisms
+		$\H^0(E,\Lscr)\xrightarrow{g^*}\H^0(E,g^*\Lscr)\iso\H^0(E,\Lscr)$. \BA{Finish!}
+	\end{proof}
+	
+	\begin{construction}
+		Given a point $x\in V_E(k)$, the induced morphism $\PGL_N\rightarrow V_E$ is
+		$\PGL_N$-equivariant. It follows that given a principal $\PGL_N$-torsor $P^A$, corresponding to
+		an Azumaya algebra $A$ of degree $N$, there is an $E[N]$-torsor $$P^A\rightarrow V_E^A,$$
+		where $V_E^A$ is the twisted form of $V_E$ induced by $A$. One can construct $V_E^A$ directly as
+		the moduli space of elliptic normal curves $C\hookrightarrow\bP(A)$ in the Severi--Brauer
+		variety $\bP(A)$ equipped with a fixed isomorphism $\Pic^0_{C/k}\iso E$.
+		The cover $P^A\rightarrow V_E^A$ on the other hand depends on the rational point $x\in V_E(k)$.
+		\BA{Or, we can directly construct the quotient $P^A/E[N]$.}
+	\end{construction}
+	
+	
+	\begin{proposition}
+		Let $k$ be a field, $E$ be an elliptic curve, $A$ be a central simple algebra of degree $n\geq 1$ over $k$. There exists a $\mathrm{SL}(A)$-homogeneous space $V_{E,A}$ such that:
 		\begin{itemize}
-			\item if $\Bar{v}\in V_E^A(\Bar{k})$, the geometric stabilizer $H_{\Bar{v}}\subset \mathrm{SL}(A_{\Bar{k}})\simeq \mathrm{SL}_n$ is conjugate to $\mathrm{He}_n$. 
+			\item if $\Bar{v}\in V_{E,A}(\Bar{k})$, the geometric stabilizer $H_{\Bar{v}}\subset \mathrm{SL}(A_{\Bar{k}})\simeq \mathrm{SL}_n$ is conjugate to $\mathrm{He}_n$. 
 			\item for all fields extensions $K/k$, $V_{E/A}(K)\neq\emptyset$ if and only if there exist an elliptic normal curve $C\subset \bP(A_K)$ over $K$ and an isomorphism of elliptic curves $J(C)\simeq E_K$.
 		\end{itemize}
 	\end{proposition}
@@ -640,17 +726,15 @@ backref]{hyperref}
 	
 	\subsection{Preliminaries on unramified Brauer groups of homogeneous spaces}
 	
-	In this section, we let $k$ be a field of characteristic zero.
-	
 	\begin{definition}
-		If $V$ is a smooth, geometrically integral scheme over $k$. The unramified Brauer group $\Br_{\nr}(V)\subset \Br(V)$ of $V$ is defined as the image of $\Br(V^c)$ in $\Br(V)$, where $V^c$ is a smooth projective compactification of $V$. (The definition of $\Br_{\nr}(V)$ does not depend on the choice of $V^c$.) We
+		Let $k$ be a field of characteristic zero and let $V$ be a smooth geometrically integral scheme over $k$. The unramified Brauer group $\Br_{\nr}(V)\subset \Br(V)$ of $V$ is defined as the image of $\Br(V^c)$ in $\Br(V)$, where $V^c$ is a smooth projective compactification of $V$. (The definition of $\Br_{\nr}(V)$ does not depend on the choice of $V^c$.) We
 		let $\Br_1(V)$ be the kernel of the restriction map $\Br(V)\to \Br(V_{\Bar{k}})$. We let $\Br_{1,\nr}(V)=\Br_\nr(V)\cap\Br_1(V)$ be the subgroup of $\Br(V)$ of geometrically trivial unramified Brauer classes. This group contains as a
 		subgroup the group $\Br_0(V)=\im(\Br(k)\rightarrow\Br(V))$.
 	\end{definition}
 	
 	Suppose that $k$ is a number field, let $\Omega_k$ be the set of places of $k$ and, for every $v \in \Omega_k$, write $\text{inv}_v: Br(k_v) \to \mathbb{Q}/\mathbb{Z}$ for the Hasse invariant. We have the Brauer--Manin pairing
 	\[
-	Br_\nr(V) \times \prod_{v \in \Omega_k} V(k_v) \to \mathbb{Q}/\mathbb{Z}, \qquad (\beta, (x_v)) \mapsto \sum_{v \in \Omega_k} \text{inv}_v \, \beta(x_v).
+	\Br_\nr(V) \times \prod_{v \in \Omega_k} V(k_v) \to \mathbb{Q}/\mathbb{Z}, \qquad (\beta, (x_v)) \mapsto \sum_{v \in \Omega_k} \text{inv}_v \, \beta(x_v).
 	\]
 	Note that $\sum_{v \in \Omega_k} \text{inv}_v \, \beta(x_v)$ is finite because $\beta$ is
 	unramified. The subset of $\prod_{v \in \Omega_k} V(k_v)$ consisting of the $(x_v)_{v\in \Omega_k}$
@@ -668,57 +752,49 @@ backref]{hyperref}
 		non-empty, then $V$ has a $k$-rational point.
 	\end{theorem}
 	
-	\subsection{The unramified Brauer group of a homogeneous space}
-	Let $k$ be a field, let $G$ be a simply connected semisimple $k$-group, let $V$ be a homogeneous space under $G$, let $\Bar{v}\in V(\Bar{k})$ be a geometric point of $V$, and let $H_{\Bar{v}}$ be the geometric stabilizer of $\Bar{v}$. We suppose that $H_{\Bar{v}}$ is finite.
 	
-	Let $G_{\Bar{v}} \subseteq G(k) \rtimes \Gamma_k$ is the subgroup consisting of those pairs $(g, \sigma)$ such that $g\sigma(\Bar{v}) = \Bar{v}$. We have a short exact sequence of abstract groups
+	
+	
+	\subsection{The unramified Brauer group of a homogeneous space}
+	Let $k$ be a field of characteristic zero, let $G$ be a simply connected semisimple $k$-group, let $V$ be a homogeneous space under $G$, let $\Bar{v}\in V(\Bar{k})$ be a geometric point of $V$, and let $H_{\Bar{v}}$ be the geometric stabilizer of $\Bar{v}$. We suppose that $H_{\Bar{v}}$ is finite.
+	
+	Let $G_{\Bar{v}} \subseteq G(\Bar{k}) \rtimes \Gamma_k$ be the subgroup consisting of those pairs $(g, \sigma)$ such that $g\sigma(\Bar{v}) = \Bar{v}$. We have a short exact sequence of abstract groups
 	\[
 	1 \to H_{\Bar{v}} \to G_{\Bar{v}} \to \Gamma_k \to 1.
 	\]
-	This short exact sequence induces an outer action of $\Gamma_k$ on $H_{\Bar{v}}$, that is, a homomorphism $\Gamma_k\to \mathrm{Out}(H_{\Bar{v}})$. 
+	This short exact sequence induces an outer action of $\Gamma_k$ on $H_{\Bar{v}}$, that is, a continuous group homomorphism $\Gamma_k\to \mathrm{Out}(H_{\Bar{v}})$. 
 	
-	We write $\mu_{\infty}\subset \Bar{k}^\times$ for the $\Gamma_k$-module given by the roots of unity in $\Bar{k}^\times$. Let $H^{\mathrm{ab}}_{\Bar{v}}$ be the abelianization of  $H^{\mathrm{ab}}$, and let $\hat{H}^{\mathrm{ab}}_{\Bar{v}}= \mathrm{Hom}(H^{\mathrm{ab}}_{\Bar{v}}, \mu_{\infty})$ be the Cartier dual of $H^{\mathrm{ab}}_{\Bar{v}}$. By \cite{}, we have an isomorphism of $\Gamma_k$-modules $\text{Pic}(\Bar{V})\simeq \hat{H}^{\mathrm{ab}}_{\Bar{v}}$ As a consequence, the Hochschild–Serre spectral sequence provides an exact sequence:
+	We write $\mu_{\infty}\subset \Bar{k}^\times$ for the $\Gamma_k$-module given by the roots of unity in $\Bar{k}^\times$. We let $H^{\mathrm{ab}}_{\Bar{v}}$ be the abelianization of  $H^{\mathrm{ab}}$, and we let $\hat{H}^{\mathrm{ab}}_{\Bar{v}}= \mathrm{Hom}(H^{\mathrm{ab}}_{\Bar{v}}, \mu_{\infty})$ be the Cartier dual of $H^{\mathrm{ab}}_{\Bar{v}}$. By \cite{}, we have an isomorphism of $\Gamma_k$-modules $\text{Pic}(V_{\Bar{k}})\simeq \hat{H}^{\mathrm{ab}}_{\Bar{v}}$. As a consequence, the Hochschild–Serre spectral sequence provides an exact sequence:
 	\[
 	\text{Br}(k) \to \text{Br}_1(V) \to H^1(k, \hat{H}^{\mathrm{ab}}_{\Bar{v}}) \xrightarrow{\delta} H^3(k, \bar{k}^*).
 	\]
-	The map $\delta$ is trivial if $V$ admits a zero-cycle of degree $1$ or if $k$ is a number field. If this is the case, we obtain a short exact sequence
+	The map $\delta$ is trivial if $V$ admits a zero-cycle of degree $1$ or if $k$ is a number field; see \cite{}. If this is the case, we obtain a short exact sequence
 	\[0\to \Br_0(V)\to \Br_1(V)\to H^1(k, \hat{H}^{\mathrm{ab}}_{\Bar{v}})\to 0.\]
-	
-	
-	We write $\chi_{cyc}:\Gamma_k\to \hat{Z}^\times$ for the cyclotomic character. Let $\sigma \in \Gamma_k$ and $u \in H_{\Bar{v}}$ be such that $\sigma(u)$ is conjugate to $u^{\chi(\sigma)}$. Then the image $\Bar{u}$ of $u$ in $H^{ab}_{\Bar{v}}$ satisfies $\sigma(\Bar{u}) = \chi(\sigma)\Bar{u}$, and is hence $\sigma$-invariant when considered as an element of $\text{Hom}(\hat{H}^{ab}_{\Bar{v}}, \mu_\infty)$, where $\Bar{\mu}_\infty$ denotes the group of roots of unity in $\Bar{k}^*$ equipped with the trivial Galois action. In particular, if we let $\mathbb{Z}$ act on $\text{Hom}(\hat{H}^{ab}_{\Bar{v}}, \mu_\infty)$ via $\sigma$, then we may view $u$ as an element of $H^0(\mathbb{Z}, \text{Hom}(\hat{H}^{ab}_{\Bar{v}}, \mu_\infty))$. We hence obtain a composite map:
+	Let $e$ denote the outer exponent of $H_{\Bar{v}}$, and fix a finite Galois subextension $k\subset L\subset \Bar{k}$, satisfying the following three conditions:
+	\begin{enumerate}
+		\item $L$ contains all $e$-th roots of unity;
+		\item $V(L) \neq \emptyset$;
+		\item the outer action of $\Gamma_k$ on $H_{\Bar{v}}$ factors through $\mathrm{Gal}(L/k)$.
+	\end{enumerate}
+	We have the inflation-restriction exact sequence \[H^1(\mathrm{Gal}(L/k),\hat{H}^{ab}_{\Bar{v}})\xrightarrow{\mathrm{Inf}}H^1(k,\hat{H}^{ab}_{\Bar{v}})\to H^1(L,\hat{H}^{ab}_{\Bar{v}}).\]	
+	We write $\chi:\Gamma_k\to \hat{\bZ}^\times$ for the cyclotomic character. Let $\sigma \in \mathrm{Gal}(L/k)$ and $u \in H_{\Bar{v}}$ be such that $\sigma(u)$ is conjugate to $u^{\chi(\sigma)}$. Then the image $\Bar{u}$ of $u$ in $H^{ab}_{\Bar{v}}$ satisfies $\sigma(\Bar{u}) = \chi(\sigma)\Bar{u}$, and is hence $\sigma$-invariant when considered as an element of $\text{Hom}(\hat{H}^{ab}_{\Bar{v}}, \Bar{\mu}_\infty)$, where $\Bar{\mu}_\infty$ denotes the group of roots of unity in $\Bar{k}^\times$ equipped with the trivial Galois action. In particular, if we let $\mathbb{Z}$ act on $\text{Hom}(\hat{H}^{ab}_{\Bar{v}}, \Bar{\mu}_\infty)$ via $\sigma$, then we may view $u$ as an element of $H^0(\mathbb{Z}, \text{Hom}(\hat{H}^{ab}_{\Bar{v}}, \Bar{\mu}_\infty))$. We obtain a composite map:
 	\[
-	H^1(k, \hat{H}^{ab}_{\Bar{v}}) \xrightarrow{\sigma^*} H^1(\mathbb{Z}, \hat{\overline{H}}_{ab}) \xrightarrow{x \mapsto u \cup x} H^1(\mathbb{Z}, \mu_\infty) = \mu_\infty,
+	H^1(\mathrm{Gal}(L/k), \hat{H}^{ab}_{\Bar{v}}) \xrightarrow{\sigma^*} H^1(\mathbb{Z}, \hat{\overline{H}}_{ab}) \xrightarrow{x \mapsto u \cup x} H^1(\mathbb{Z}, \mu_\infty) = \mu_\infty,
 	\]
-	where $\sigma^*$ is the pull-back map along $\mathbb{Z} \rightarrow G$, $1 \mapsto \sigma$.
+	where $\sigma^*$ is the pull-back map along $\mathbb{Z} \rightarrow \mathrm{Gal}(L/k)$ given by $1 \mapsto \sigma$.
 	
-	[...]
+	The following theorem is due to Harpaz--Wittenberg \cite[Proposition 3.3]{}. It builds upon formulae of Harari, Demarche, and Lucchini Arteche.
 	
 	
-	\begin{theorem}\label{brauer-homogeneous}[...]
+	\begin{theorem}\label{brauer-homogeneous}
 		There is an equality
 		\begin{align*}
-			\Br_{1,\nr}(V)/\Br_0(V) = \{\beta \in H^1(k, \hat{H}^{\mathrm{ab}}_{\Bar{v}}) \,|\, \delta(\beta) = 0 \text{ and } u \cup \sigma^*\beta = 1 \text{ in $\mu_\infty$}\\
-			\text{for all $u \in \hat{H}_{\Bar{v}}$ and $\sigma \in \Gamma_k$ such that $\sigma(u)$ is conjugate to $u^{\chi_{cyc}(\sigma)}$ in $\hat{H}_{\Bar{v}}$}\}.
+			\Br_{1,\nr}(V)/\Br_0(V) = \{\beta \in H^1(\mathrm{Gal}(L/k), \hat{H}^{\mathrm{ab}}_{\Bar{v}}) \,|\,& \delta(\beta) = 0 \text{ and } u \cup \sigma^*\beta = 1 \text{ in $\mu_\infty$ $\forall u \in \hat{H}_{\Bar{v}}$ and $\forall \sigma \in \mathrm{Gal}(L/k)$}\\
+			&\text{such that $\sigma(u)$ is conjugate to $u^{\chi(\sigma)}$ in $\hat{H}_{\Bar{v}}$}\},
 		\end{align*}
 	\end{theorem}
 	
-	\begin{remark}
-		We maintain the notation of Theorem \ref{brauer-homogeneous}. Let $e$ denote the outer exponent of $H_{\Bar{v}}$, and fix a finite Galois subextension $k\subset L\subset \Bar{k}$, with Galois group $G = \text{Gal}(L/k)$, satisfying the following three conditions:
-		\begin{enumerate}
-			\item $L$ contains all $e$-th roots of unity;
-			\item $V(L) \neq \emptyset$;
-			\item the  outer action of $\Gamma_k$ on $H_{\Bar{v}}$ factors through $G = \mathrm{Gal}(L/k)$.
-		\end{enumerate}
-		Let $\beta\in H^1(k,\hat{H}^{ab}_{\Bar{v}})$ and let $b:\Gamma_k\to \hat{H}^{ab}_{\Bar{v}}$ be a $1$-cocycle representing $\beta$. If $\beta$ comes from $\Br_{1,\nr}(V)/\Br_0(V)$, then $b(\sigma)=0$ for every $\sigma\in \Gamma_L$. Therefore $\beta$ restricts to zero in $H^1(L,\hat{H}^{ab}_{\Bar{v}})$ and hence, by the inflation-restriction sequence, it comes from a unique element of $H^1(G,\hat{H}^{ab}_{\Bar{v}})$. Thus the conclusion of Theorem \ref{brauer-homogeneous} is equivalent to
-		\begin{align*}
-			\Br_{1,\nr}(V)/\Br_0(V) = \{\beta \in H^1(G, \hat{H}^{\mathrm{ab}}_{\Bar{v}}) \,|\, \delta(\beta) = 0 \text{ and } u \cup \sigma^*\beta = 1 \text{ in $\mu_\infty$}\\
-			\text{for all $u \in \hat{H}_{\Bar{v}}$ and $\sigma \in \Gamma_k$ such that $\sigma(u)$ is conjugate to $u^{\chi_{cyc}(\sigma)}$ in $\hat{H}_{\Bar{v}}$}\},
-		\end{align*}
-		which is the statement of \cite{}.
-		%In particular, the action of $\Gamma_k$ on both $\overline{H}_{ab}$ and $\hat{\overline{H}}_{ab}$ factors through $G$: we may, and will, consider these two abelian groups as $G$-modules and view $H^1(G, \hat{\overline{H}}_{ab})$ as a subgroup of $H^1(k, \hat{\overline{H}}_{ab})$ via the inflation map $H^1(G, \hat{\overline{H}}_{ab}) \hookrightarrow H^1(k, \hat{\overline{H}}_{ab})$. 
-	\end{remark}
-	
-	We conclude this section with the following observation.
+	We conclude this section with the following simple observation.
 	
 	\begin{lemma}\label{injective-res}
 		Let $k'$ be a Galois field extension of $k$ such that the restriction map $H^1(k,\hat{H}^{\mathrm{ab}}_{\Bar{v}})\to H^1(k',\hat{H}^{\mathrm{ab}}_{\Bar{v}})$ is injective. Then the pullback homomorphism 
@@ -736,6 +812,10 @@ backref]{hyperref}
 		\]
 		where the rows come from the Hochschild-Serre spectral sequence and the vertical arrows are restriction maps. 
 	\end{proof}
+	
+	
+	
+	
 	
 	
 	\subsection{Elliptic normal curves}
@@ -791,6 +871,7 @@ backref]{hyperref}
 		
 		If (2) holds, the conclusion follows from a restriction-corestriction argument.
 	\end{proof}
+	
 	
 	\section{Local points everywhere via Tate curves}
 	
@@ -851,9 +932,9 @@ backref]{hyperref}
 	\begin{proof}
 		We may write $A=(\chi,a)$ for some $\chi\in H^1(k,\Z/N\Z)$ and $a\in k^\times$. 
 		
-		Let $V_E^A$ be the Hilbert scheme of elliptic normal curves $C$ in $\bP(A)$ with a fixed isomorphism $\Pic_{C/k}^0\iso E$. By ???, the collection of elliptic curves $E$ over $k$ such that $V_E^A(k_v)\neq \emptyset$ for every place $v$ of $k$ is infinite. By ???, the collection of elliptic curves $E$ over $k$ such that the group $E[p](k')$ is non-trivial is finite. Therefore, there exists an elliptic curve $E$ over $k$ such that $E[p](k')$ is trivial and $V_E^A(k_v)\neq \emptyset$ for every place $v$ of $k$.
+		Let $V_{E,A}$ be the Hilbert scheme of elliptic normal curves $C$ in $\bP(A)$ with a fixed isomorphism $\Pic_{C/k}^0\iso E$. By ???, the collection of elliptic curves $E$ over $k$ such that $V_{E,A}(k_v)\neq \emptyset$ for every place $v$ of $k$ is infinite. By ???, the collection of elliptic curves $E$ over $k$ such that the group $E[p](k')$ is non-trivial is finite. Therefore, there exists an elliptic curve $E$ over $k$ such that $E[p](k')$ is trivial and $V_{E,A}(k_v)\neq \emptyset$ for every place $v$ of $k$.
 		
-		We now show that $\Br_{1,\nr}(V_E^A)=\Br_0(V_E^A)$. Let $k'=\Bar{k}^{\mathrm{Ker}\chi}$, let $\Delta= \Gamma_{k'}$ be the inverse image of a $p$-Sylow subgroup of $\mathrm{Out}(H_{\Bar{v}})$, and let $k''$ be the extension of $k'$ fixed by $\Delta$. By ???, we have $\Br_{1,\nr}((V_E^A)_{k''})=\Br_0((V_E^A)_{k''})$. By ???, we deduce that $\Br_{1,\nr}((V_E^A)_{k'})=\Br_0((V_E^A)_{k'})$. Finally, by ???, we obtain that $\Br_{1,\nr}(V_E^A)=\Br_0(V_E^A)$. We conclude by ???.
+		We now show that $\Br_{1,\nr}(V_{E,A})=\Br_0(V_{E,A})$. Let $k'=\Bar{k}^{\mathrm{Ker}\chi}$, let $\Delta= \Gamma_{k'}$ be the inverse image of a $p$-Sylow subgroup of $\mathrm{Out}(H_{\Bar{v}})$, and let $k''$ be the extension of $k'$ fixed by $\Delta$. By ???, we have $\Br_{1,\nr}((V_{E,A})_{k''})=\Br_0((V_{E,A})_{k''})$. By ???, we deduce that $\Br_{1,\nr}((V_{E,A})_{k'})=\Br_0((V_{E,A})_{k'})$. Finally, by ???, we obtain that $\Br_{1,\nr}(V_{E,A})=\Br_0(V_{E,A})$. We conclude by ???.
 	\end{proof}
 	
 	
@@ -887,6 +968,52 @@ backref]{hyperref}
 	hard to understand what $x^*\alpha$ is.
 	Nevertheless, this should be entirely controlled by the geometry of the situation. If possible, we
 	could presumably generalize Theorem~\ref{mainthm} to all $N$.
+	
+	
+	
+	\subsection{Evaluating the Brauer--Manin obstruction}
+	
+	
+	\begin{lemma}
+		Let $G$ be a simply connected semisimple algebraic group over a field $k$ \BA{of characteristic
+			$0$}. Let $V$ be a homogenous space for $G$ of
+		the form $G/H$ where $H\subseteq G$ is a finite (solvable?) subgroup and let $f\colon
+		V\rightarrow\Spec k$ be the structure morphism. We have
+		\begin{align*}
+			\R^0f_*\bG_{m,V}&\iso\Gm,\\
+			\R^1f_*\bG_{m,V}&\iso\widehat{H},\\
+			\R^2f_*\bG_{m,V}&=0,
+		\end{align*}
+		where $\widehat{H}$ is the Cartier dual of $H$, which agrees with the Cartier dual of the
+		abelianization of $H$.
+	\end{lemma}
+	
+	\begin{proof}
+		Let $g\colon G\rightarrow\Spec k$ be the structure morphism for $G$.
+		Then, $\R^0g_*\bG_{m,G}\iso\Gm$ by
+		\BA{Rosenlicht's lemma}, $\R^1g_*\bG_{m,G}=0$ by simple connectedness, and $\R^2g_*\bG_{m,G}=0$
+		by a result of Iversen~\cite{iversen} since $G$ is simply connected. Let $h\colon G\rightarrow
+		V$ be the quotient map. We have that $\R^0h_*\bG_{m,G}$ a torus of rank the order of $H$, while
+		$\R^1h_*\bG_{m,G}=\R^2h_*\bG_{m,G}=0$. 
+		Using the spectral sequence $$\E_2^{s,t}=\R^s f_*(\R^t h_*\bG_{m,G})\Rightarrow\R^{s+t}
+		g_*\bG_{m,G},$$
+		As the natural pullback map $\R^0f_*\bG_{m,V}\rightarrow\R^0g_*\bG_{m,G}$ is
+		injective, it follows that the Rosenlicht's lemma holds for $V$ as well. The claim about
+		$\R^1f_*\bG_{m,V}$ is \BA{standard}.
+	\end{proof}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	\small
 	\bibliographystyle{amsplain}
