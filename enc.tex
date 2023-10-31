@@ -783,11 +783,13 @@ backref]{hyperref}
 		\end{enumerate}
 		Then the restriction map $\Br_1(V_E)/\Br_0(V_E)\to \Br_1((V_E)_{k'})/\Br_0((V_E)_{k'})$ is injective. In particular, if $\Br_{1,nr}((V_E)_{k'})=\Br_0((V_E)_{k'})$, then $\Br_{1,nr}(V_E)=\Br_0(V_E)$.
 	\end{proposition}
-	\textbf{The proof under assumption 1 contains a gap.}
+	
 	\begin{proof}
-		In view of Lemma \ref{injective-res}, it suffices to show that the assumptions imply the injectivity of $H^1(k,H^{\mathrm{ab}}_{\Bar{v}})\to H^1(k',H^{\mathrm{ab}}_{\Bar{v}})$. By a restriction-corestriction argument, (2) implies the injectivity. For (1), by the inflation-restriction sequence it suffices to show that $H^1(k'/k,(H^{\mathrm{ab}}_{\Bar{v}})^{\Gamma_{k'}})=0$. However, even if $E[N](k')=\{0\}$, we do not necessarily have $(H^{\mathrm{ab}}_{\Bar{v}})^{\Gamma_{k'}}=0$. The Galois modules $H^{\mathrm{ab}}_{\Bar{v}}$ and $E[N](\Bar{k})$ are not isomorphic unless $A$ is trivial. 
+		In view of Lemma \ref{injective-res}, it suffices to show that the assumptions imply the injectivity of $H^1(k,H^{\mathrm{ab}}_{\Bar{v}})\to H^1(k',H^{\mathrm{ab}}_{\Bar{v}})$. 
 		
-		(If the class $A$ is fixed, I hope that the number of elliptic curves for which $(H^{\mathrm{ab}}_{\Bar{v}})^{\Gamma_{k'}}=0$ is still finite.)
+		Suppose that (1) holds. By the inflation-restriction sequence it suffices to show that $H^1(k'/k,(H^{\mathrm{ab}}_{\Bar{v}})^{\Gamma_{k'}})=0$. Since $A_{k'}$ is split, we have an isomorphism of $\Gamma_{k'}$-modules $H^{\mathrm{ab}}_{\Bar{v}}\simeq E[N](\Bar{k})$, and hence  $(H^{\mathrm{ab}}_{\Bar{v}})^{\Gamma_{k'}}\simeq E[N](k')$. By assumption $E[N](k')=\{0\}$, and hence $H^1(k'/k,(H^{\mathrm{ab}}_{\Bar{v}})^{\Gamma_{k'}})=0$.
+		
+		If (2) holds, the conclusion follows from a restriction-corestriction argument.
 	\end{proof}
 	
 	\section{Local points everywhere via Tate curves}
