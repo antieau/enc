@@ -718,7 +718,24 @@ backref]{hyperref}
 		%In particular, the action of $\Gamma_k$ on both $\overline{H}_{ab}$ and $\hat{\overline{H}}_{ab}$ factors through $G$: we may, and will, consider these two abelian groups as $G$-modules and view $H^1(G, \hat{\overline{H}}_{ab})$ as a subgroup of $H^1(k, \hat{\overline{H}}_{ab})$ via the inflation map $H^1(G, \hat{\overline{H}}_{ab}) \hookrightarrow H^1(k, \hat{\overline{H}}_{ab})$. 
 	\end{remark}
 	
+	We conclude this section with the following observation.
 	
+	\begin{lemma}\label{injective-res}
+		Let $k'$ be a Galois field extension of $k$ such that the restriction map $H^1(k,\hat{H}^{\mathrm{ab}}_{\Bar{v}})\to H^1(k',\hat{H}^{\mathrm{ab}}_{\Bar{v}})$ is injective. Then the pullback homomorphism 
+		\[\Br_{1,\nr}(V)/\Br_0(V)\to \Br_{1,\nr}(V_{k'})/\Br_0(V_{k'})\]
+		is injective.
+	\end{lemma}
+	
+	\begin{proof}
+		This follows from a diagram chase in the commutative diagram of exact sequences of abelian groups
+		\[
+		\begin{tikzcd}
+			0\arrow[r] &  \Br_0(V) \arrow[r] \arrow[d] & \Br_1(V) \arrow[r] \arrow[d] & H^1(k,\hat{H}^{\mathrm{ab}}_{\Bar{v}})\arrow[d,hook] \\
+			0\arrow[r] &  \Br_0(V_{k'}) \arrow[r] & \Br_1(V_{k'}) \arrow[r] & H^1(k',\hat{H}^{\mathrm{ab}}_{\Bar{v}})
+		\end{tikzcd}
+		\]
+		where the rows come from the Hochschild-Serre spectral sequence and the vertical arrows are restriction maps. 
+	\end{proof}
 	
 	
 	\subsection{Elliptic normal curves}
@@ -758,44 +775,20 @@ backref]{hyperref}
 	
 	
 	
-	\begin{lemma}
-		Let $k$ be a field, let $N\geq 1$ be an integer invertible in $k$, let $\chi\in H^1(k,\Z/N\Z)$ and $a\in k^\times$, let $A\in \Br(k)$ be the Brauer class of the degree-$n$ central simple $k$-algebra $(\chi,a)$, and let $k'=\Bar{k}^{\mathrm{Ker}\chi}$. Let $E$ be an elliptic curve over $k$ such that $E[N](k')=\{0\}$, and let $V_E$ be the Hilbert scheme of elliptic normal curves $C$ in $\bP(A)$
-		with a fixed isomorphism $\Pic_{C/k}^0\iso E$. Then the restriction map
-		\[\Br_1(V_E)/\Br_0(V_E)\to \Br_1((V_E)_{k'})/\Br_0((V_E)_{k'})\]
-		is injective. In particular, if $\Br_{1,nr}((V_E)_{k'})=\Br_0((V_E)_{k'})$, then $\Br_{1,nr}(V_E)=\Br_0(V_E)$.
-	\end{lemma}
-	
+	\begin{proposition}
+		Let $k$ be a field, let $N\geq 1$ be an integer invertible in $k$, let $A\in \Br(k)$ be a Brauer class, let $k'/k$ be a finite field extension, and let $E$ be an elliptic curve over $k$. Suppose that either
+		\begin{enumerate}
+			\item $k'/k$ is Galois, $A_{k'}=0$ and $E[N](k')=\{0\}$, or
+			\item $[k':k]$ is prime to $N$.
+		\end{enumerate}
+		Then the restriction map $\Br_1(V_E)/\Br_0(V_E)\to \Br_1((V_E)_{k'})/\Br_0((V_E)_{k'})$ is injective. In particular, if $\Br_{1,nr}((V_E)_{k'})=\Br_0((V_E)_{k'})$, then $\Br_{1,nr}(V_E)=\Br_0(V_E)$.
+	\end{proposition}
+	\textbf{The proof under assumption 1 contains a gap.}
 	\begin{proof}
-		By the inflation-restriction sequence, the kernel of the restriction map $H^1(k,E[N])\to H^1(k',E[N])$ is isomorphic to $H^1(k'/k,E[N](k'))$. Since $E[N](k')$ is trivial, so is $H^1(k'/k,E[N](k'))$, and hence $H^1(k,E[N])\to H^1(k',E[N])$ is injective.  The conclusion follows from a diagram chase in the following commutative diagram of exact sequences of abelian groups
-		\[
-		\begin{tikzcd}
-			0\arrow[r] &  \Br_0(V_E) \arrow[r] \arrow[d] & \Br_1(V_E) \arrow[r] \arrow[d] & H^1(k,E[N])\arrow[d,hook] \\
-			0\arrow[r] &  \Br_0((V_E)_{k'}) \arrow[r] & \Br_1((V_E)_{k'}) \arrow[r] & H^1(k',E[N])
-		\end{tikzcd}
-		\]
-		where the rows come from the Hochschild-Serre spectral sequence and the vertical arrows are restriction maps. 
+		In view of Lemma \ref{injective-res}, it suffices to show that the assumptions imply the injectivity of $H^1(k,H^{\mathrm{ab}}_{\Bar{v}})\to H^1(k',H^{\mathrm{ab}}_{\Bar{v}})$. By a restriction-corestriction argument, (2) implies the injectivity. For (1), by the inflation-restriction sequence it suffices to show that $H^1(k'/k,(H^{\mathrm{ab}}_{\Bar{v}})^{\Gamma_{k'}})=0$. However, even if $E[N](k')=\{0\}$, we do not necessarily have $(H^{\mathrm{ab}}_{\Bar{v}})^{\Gamma_{k'}}=0$. The Galois modules $H^{\mathrm{ab}}_{\Bar{v}}$ and $E[N](\Bar{k})$ are not isomorphic unless $A$ is trivial. 
+		
+		(If the class $A$ is fixed, I hope that the number of elliptic curves for which $(H^{\mathrm{ab}}_{\Bar{v}})^{\Gamma_{k'}}=0$ is still finite.)
 	\end{proof}
-	
-	
-	\begin{lemma}
-		Let $k$ be a field, let $N\geq 1$ be an integer invertible in $k$, let $E$ be an elliptic curve over $k$, let $V_E$ be the Hilbert scheme of elliptic normal curves $C$ in $\bP^{N-1}_k$
-		with a fixed isomorphism $\Pic_{C/k}^0\iso E$. Let $k'$ be a field extension of $k$, of degree prime to $N$. Then the restriction map
-		\[\Br_1(V_E)/\Br_0(V_E)\to \Br_1((V_E)_{k'})/\Br_0((V_E)_{k'})\]
-		is injective.
-	\end{lemma}
-	
-	\begin{proof}
-		By the inflation-restriction sequence, the kernel of the restriction map $H^1(k,E[N])\to H^1(k',E[N])$ is isomorphic to $H^1(k'/k,E[N](k'))$. Since the order of $E[N](k')$ divides $N^2$ and $[k':k]$ is prime to $N$, the group $H^1(k'/k,E[N](k'))$ is trivial, and hence $H^1(k,E[N])\to H^1(k',E[N])$ is injective. The conclusion follows from a diagram chase in the following commutative diagram of exact sequences of abelian groups
-		\[
-		\begin{tikzcd}
-			0\arrow[r] &  \Br_0(V_E) \arrow[r] \arrow[d] & \Br_1(V_E) \arrow[r] \arrow[d] & H^1(k,E[N])\arrow[d,hook] \\
-			0\arrow[r] &  \Br_0((V_E)_{k'}) \arrow[r] & \Br_1((V_E)_{k'}) \arrow[r] & H^1(k',E[N])
-		\end{tikzcd}
-		\]
-		where the rows come from the Hochschild-Serre spectral sequence and the vertical arrows are restriction maps.
-	\end{proof}
-	
-	
 	
 	\section{Local points everywhere via Tate curves}
 	
@@ -892,9 +885,6 @@ backref]{hyperref}
 	hard to understand what $x^*\alpha$ is.
 	Nevertheless, this should be entirely controlled by the geometry of the situation. If possible, we
 	could presumably generalize Theorem~\ref{mainthm} to all $N$.
-	
-	This is a test.
-	
 	
 	\small
 	\bibliographystyle{amsplain}
