@@ -18,13 +18,13 @@
 %%%%%%%%%%%%%%%%%%
 
 \usepackage[pdfstartview=FitH,
-            pdfauthor={},
-            pdftitle={Elliptic normal curves},
-            colorlinks,
-            linkcolor=reference,
-            citecolor=citation,
-            urlcolor=e-mail,
-            backref]{hyperref}
+pdfauthor={},
+pdftitle={Elliptic normal curves},
+colorlinks,
+linkcolor=reference,
+citecolor=citation,
+urlcolor=e-mail,
+backref]{hyperref}
 
 % General includes
 \usepackage{amsmath}
@@ -103,7 +103,7 @@
 \setlength{\marginparwidth}{1.2in}
 \let\oldmarginpar\marginpar
 \renewcommand\marginpar[1]{\-\oldmarginpar[\raggedleft\footnotesize #1]%
-{\raggedright\footnotesize #1}}
+	{\raggedright\footnotesize #1}}
 \renewcommand{\AA}[1]{\textcolor{blue}{#1}}
 \newcommand{\FS}[1]{\textcolor{purple}{#1}}
 \newcommand{\BA}[1]{\textcolor{olive}{#1}}
@@ -371,7 +371,7 @@
 \newcommand{\KO}{\mathrm{KO}}
 \newcommand{\TMF}{\mathrm{TMF}}
 \newcommand{\MU}{\mathrm{MU}}
- 
+
 % Mapping objects
 \newcommand{\Map}{\mathrm{Map}}
 \newcommand{\bMap}{\mathbf{Map}}
@@ -430,22 +430,22 @@
 
 % Special arrows
 \newcommand{\triplerightarrows}{%
-    \tikz[minimum height=0ex]
-          \path[->]
-             node (a)            {}
-       node (b) at (1em,0) {}
-         (a.north)  edge (b.north)
-               (a.center) edge (b.center)
-                 (a.south)  edge (b.south);%
+	\tikz[minimum height=0ex]
+	\path[->]
+	node (a)            {}
+	node (b) at (1em,0) {}
+	(a.north)  edge (b.north)
+	(a.center) edge (b.center)
+	(a.south)  edge (b.south);%
 }
 \newcommand{\lrlarrows}{%
-    \tikz[minimum height=0ex]
-          \path[->]
-             node (a)            {}
-       node (b) at (1em,0) {}
-         (b.north)  edge (a.north)
-               (a.center) edge (b.center)
-                 (b.south)  edge (a.south);%
+	\tikz[minimum height=0ex]
+	\path[->]
+	node (a)            {}
+	node (b) at (1em,0) {}
+	(b.north)  edge (a.north)
+	(a.center) edge (b.center)
+	(b.south)  edge (a.south);%
 }
 \newcommand{\we}{\simeq}
 \newcommand{\iso}{\cong}
@@ -508,395 +508,396 @@
 \newtheorem{claim}[theorem]{Claim}
 
 \begin{document}
-
-\maketitle
-\tableofcontents
-
-
-
-\section{Introduction}
-
-Let $k$ be a field, let $\Bar{k}$ be a separable closure of $k$, let $N\geq 1$ be an integer, and
-let $A$ be a central simple algebra of degree $N$ over $k$. We write $\bP(A)$ for the Severi--Brauer
-variety of $A$. The central simple algebra $A$ defines a class $\alpha\in\Br(k)$. It is an open
-problem of Clark and Saltman to determine whether $\alpha$ (or equivalently $A$) is split by a genus $1$ curve, which is
-to say whether there exists a smooth proper geometrically connected genus $1$ curve $C$ defined over
-$k$ such that the image of $\alpha$ in $\Br(k(C))$ vanishes.
-
-The genus $1$ curve splitting problem, and variants of it, have been considered
-in~\cite{dejong-ho,ho-lieblich,antieau-auel,saltman-genus,huybrechts-mattei}. The problem of determining
-which Brauer classes are split by a given genus $1$ curve has been studied
-by~\cite{ciperiani-krashen}, who give algorithms over number fields.
-
-Here is a brief summary of what is known; for more details and examples, see~\cite{antieau-auel}.
-\begin{enumerate}
-    \item[(a)] Over an arbitrary field, geometric arguments using the linear algebra of vector
-        bundles on Severi--Brauer varieties show that central simple algebras of
-        degree at most $5$ are split by genus $1$ curves~\cite{dejong-ho}.
-    \item[(b)] Over an arbitrary field, every Brauer class is split by a torsor for the Jacobian of
-        a curve or a product of two curves~\cite{ho-lieblich}.
-    \item[(c)] Over a local field, every Brauer class is split by a genus $1$ curve~\cite[Ex.~2.4]{antieau-auel}.
-    \item[(d)] Over a number field, every central simple algebra of degrees $N=2,\ldots,10$ or $N=12$ is split
-        by a genus $1$ curve~\cite{antieau-auel} (with the assumption that $k$ contains a primitive $8$th root of unity
-        if $N=8$, an element of the form $\zeta_9+\zeta_9^{-1}$, where $\zeta_9$ is a primitive
-        $9$th root of unity, if $N=9$, and a primitive $4$th root of unity if $N=12$).
-    \item[(e)] If there is an elliptic curve $E$ over $k$ with full level $N$ structure
-        $E[N]\iso\bZ/N\times\mu_N$, then every {\em cyclic} central simple algebra of degree $N$ is
-        split by a genus $1$ curve~\cite{antieau-auel}.
-\end{enumerate}
-
-Geometrically, a central simple algebra $A$ is split by a genus $1$ curve if and only if there is a genus $1$ curve $C$
-defined over $k$ and a $k$-linear morphism $C\rightarrow\bP(A)$. The geometry of this map is
-unspecified.
-
-By definition, if $A$ is a central simple algebra of degree $N$, then an elliptic normal curve in $\bP(A)$ is a
-smooth projective genus $1$ curve $C\subset \bP(A)$ such that $C_{\Bar{k}}\subset
-\bP(A_{\Bar{k}})\simeq \bP_{\Bar{k}}^{N-1}$ has degree $N$ and is not contained in any hyperplane of
-$\bP_{\Bar{k}}^{N-1}$.
-% (This definition is independent of the choice of the isomorphism
-% $\bP(A_{\Bar{k}})\simeq \bP_{\Bar{k}}^{n-1}$.)
-Equivalently, the embedding
-$C_{\Bar{k}}\subseteq\bP(A_{\Bar{k}})\iso\bP^{N-1}$ is defined by a full linear system of degree $N$
-on $C_{\Bar{k}}$. Note that despite the name, if $[A]\neq 0$ in $\Br(k)$, then $\bP(A)$ has no
-rational points. Hence, if $C\subseteq\bP(A)$ is an elliptic normal curve, then $C$ has no rational points either, so it is a
-genus $1$ curve only, not an elliptic curve.
-
-\begin{theorem}\label{mainthm}
-    Let $k$ be a number field, $p$ be a prime number, and $A$ be a central simple algebra of degree
-    $p$ over $k$. Then there exists an elliptic normal curve $C\subset \bP(A)$ over $k$. In
-    particular, $C$ splits $A$.
-\end{theorem}
-
-In fact, our method works for central simple algebras of more general square-free integer degrees
-$N\geq 2$, which we
-call $\GL_2$-general, meaning that if $p\;|\;N$, then the order of a $p$-Sylow subgroup of
-$\GL_2(\bZ/N)$ is $p$.\footnote{\BA{Comparing a list of $\GL_2$-general numbers generated by a short
-{\ttfamily SAGE} script and the {\ttfamily OEIS} turns up integer sequence {\ttfamily A350342},
-which is the sequence of integers $N$ such that every group of order $N^2$ is abelian. I conjecture
-that these sequences are the same and I checked roughly up to $N=9997$.}} Among the numbers up to $100$, besides the primes, the following integers are
-$\GL_2$-general:
-$$35,\quad 65,\quad 77,\quad 85.$$
-Thus, for example, for $N=35,65,77,85$, every twisted form of $\bP^{N-1}$ over a number field $k$ contains an
-elliptic normal curve. For numbers up to $10\,000$ there are $1229$ primes and $2510$ numbers which
-are $\GL_2$-general.
-
-Our proof of Theorem~\ref{mainthm} is to rephrase the problem as one of finding rational points on
-certain Hilbert scheme constructions. Namely, if $E$ is an elliptic curve, we let $V_E^A$ be the scheme of elliptic normal curves
-$C$ in $\bP(A)$ together with a fixed isomorphism $\Pic_{C/k}^0\iso E$.
-This is a smooth scheme which is an $\Aut_{E/k}$-torsor over $V_{j(E)}^A$, the closed subscheme of the
-Hilbert scheme of elliptic normal curves in $\bP(A)$ whose Jacobians have $j$-invariant $j(E)$.
-Here, $\Aut_{E/k}$ is the group scheme of automorphisms of the elliptic curve $E$, i.e.,
-automorphisms of the scheme $E$ which preserve the basepoint $0\in E$.
-
-We prove that for countably many $j$-invariants $j_0$ there are judicious choices of $E$ with
-$j(E)=j_0$ such that the scheme $V_E^A$ has $k_v$-points for all places $v$. Then, we show that for
-all but finitely many of these choices there is no Brauer--Manin obstruction to the existence of
-rational points by showing that the unramified Brauer group of $V_E^A$ is the image
-of $\Br(k)\rightarrow\Br(V_E^A)$.\footnote{This part of our argument is the only one where we need
-to fix $N$ to be $\GL_2$-general.} As $V_E^A$ is geometrically a homogeneous space for $\SL_N$ with
-stabilizer a Heisenberg group of order $N^3$, this is already enough to conclude that for these $E$ the scheme $V_E^A$ has a
-$0$-cycle of degree $1$ by a theorem of \BA{who?}. We conclude by using \BA{forthcoming} work of Demeio,
-which shows that for spaces which are geometrically homogeneous under actions of semisimple simply
-connected algebraic groups with solvable stabilizers, like the Heisenberg groups of order $N^3$ in
-$\SL_N$, the Brauer--Manin obstruction to rational points is the only one.
-This is a special case of the open Colliot-Th\'el\`ene conjecture which states that for geometrically
-rationally connected varieties the Brauer--Manin obstruction is the only obstruction to the
-existence of rational points.
-
-\BA{TODO: remark that in fact one gets density of rational points and hence each $V_E^A(k)$ is in
-fact countably infinite.}
-
-
-
-\paragraph{Ackowledgments.}
-We thank Danny Krashen, Eoin Mackall, and David Saltman for conversations related to the topic of the
-present paper. Thanks also go to Julian Demeio for sharing with us his results on the Brauer--Manin
-obstruction before they were released.
-
-The first author was supported by NSF grants DMS-2102010 and DMS-2152235, by Simons Fellowship
-666565, and by the Simons Collaboration on Perfection (Award MP-SCMPS-00001529-11).
-
-
-
-
-
-\section{Hilbert schemes of elliptic normal curves}
-
-
-[...]
-
-\begin{proposition}
-    Let $k$ be a field, $E$ be an elliptic curve, $A$ be a central simple algebra of degree $n\geq 1$ over $k$. There exists a $\mathrm{SL}(A)$-homogeneous space $V_{E,A}$ such that:
-    \begin{itemize}
-    \item if $\Bar{v}\in V_{E,A}(\Bar{k})$, the geometric stabilizer $H_{\Bar{v}}\subset \mathrm{SL}(A_{\Bar{k}})\simeq \mathrm{SL}_n$ is conjugate to $\mathrm{He}_n$. 
-    \item for all fields extensions $K/k$, $V_{E/A}(K)\neq\emptyset$ if and only if there exist an elliptic normal curve $C\subset \bP(A_K)$ over $K$ and an isomorphism of elliptic curves $J(C)\simeq E_K$.
-    \end{itemize}
-\end{proposition}
-
-
-
-
-\section{Unramified Brauer group calculations}
-
-\subsection{Preliminaries on unramified Brauer groups of homogeneous spaces}
-
-In this section, we let $k$ be a field of characteristic zero.
-
-\begin{definition}
-    If $V$ is a smooth, geometrically integral scheme over $k$. The unramified Brauer group $\Br_{\nr}(V)\subset \Br(V)$ of $V$ is defined as the image of $\Br(V^c)$ in $\Br(V)$, where $V^c$ is a smooth projective compactification of $V$. (The definition of $\Br_{\nr}(V)$ does not depend on the choice of $V^c$.) We
-    let $\Br_1(V)$ be the kernel of the restriction map $\Br(V)\to \Br(V_{\Bar{k}})$. We let $\Br_{1,\nr}(V)=\Br_\nr(V)\cap\Br_1(V)$ be the subgroup of $\Br(V)$ of geometrically trivial unramified Brauer classes. This group contains as a
-    subgroup the group $\Br_0(V)=\im(\Br(k)\rightarrow\Br(V))$.
-\end{definition}
-
-Suppose that $k$ is a number field, let $\Omega_k$ be the set of places of $k$ and, for every $v \in \Omega_k$, write $\text{inv}_v: Br(k_v) \to \mathbb{Q}/\mathbb{Z}$ for the Hasse invariant. We have the Brauer--Manin pairing
-\[
-Br_\nr(V) \times \prod_{v \in \Omega_k} V(k_v) \to \mathbb{Q}/\mathbb{Z}, \qquad (\beta, (x_v)) \mapsto \sum_{v \in \Omega_k} \text{inv}_v \, \beta(x_v).
-\]
-Note that $\sum_{v \in \Omega_k} \text{inv}_v \, \beta(x_v)$ is finite because $\beta$ is
-unramified. The subset of $\prod_{v \in \Omega_k} V(k_v)$ consisting of the $(x_v)_{v\in \Omega_k}$
-that are orthogonal to $\Br_\nr(V)$ with respect to the Brauer--Manin pairing is called the
-Brauer--Manin set. The standard exact sequence
-$$0\rightarrow\Br(k)\rightarrow\bigoplus_v\Br(k_v)\xrightarrow{\sum\inv_v}\bQ/\bZ\rightarrow 0$$ of class field theory implies that the image of $V(k)$ in $\prod_{v \in \Omega_k} V(k_v)$ is contained in the Brauer--Manin set.
-
-The following theorem is due to Demeio \cite{}.
-
-\begin{theorem}[Demeio]
-    Let $k$ be a number field, let $V$ be a homogeneous space of a semi-simple and simply connected
-    linear group $G$ with finite solvable geometric stabilizers, and let $V^c$ be a smooth
-    compactification of $V$. Then $V^c(k)$ is dense in the Brauer–Manin set of $V^c$ with respect to
-    the product of the $v$-adic topologies. In particular, if the Brauer--Manin set of $V$ is
-    non-empty, then $V$ has a $k$-rational point.
-\end{theorem}
-
-\subsection{The unramified Brauer group of a homogeneous space}
-Let $k$ be a field, let $G$ be a simply connected semisimple $k$-group, let $V$ be a homogeneous space under $G$, let $\Bar{v}\in V(\Bar{k})$ be a geometric point of $V$, and let $H_{\Bar{v}}$ be the geometric stabilizer of $\Bar{v}$. We suppose that $H_{\Bar{v}}$ is finite.
-
-Let $G_{\Bar{v}} \subseteq G(k) \rtimes \Gamma_k$ is the subgroup consisting of those pairs $(g, \sigma)$ such that $g\sigma(\Bar{v}) = \Bar{v}$. We have a short exact sequence of abstract groups
-\[
-1 \to H_{\Bar{v}} \to G_{\Bar{v}} \to \Gamma_k \to 1.
-\]
-This short exact sequence induces an outer action of $\Gamma_k$ on $H_{\Bar{v}}$, that is, a homomorphism $\Gamma_k\to \mathrm{Out}(H_{\Bar{v}})$. 
-
-We write $\mu_{\infty}\subset \Bar{k}^\times$ for the $\Gamma_k$-module given by the roots of unity in $\Bar{k}^\times$. Let $H^{\mathrm{ab}}_{\Bar{v}}$ be the abelianization of  $H^{\mathrm{ab}}$, and let $\hat{H}^{\mathrm{ab}}_{\Bar{v}}= \mathrm{Hom}(H^{\mathrm{ab}}_{\Bar{v}}, \mu_{\infty})$ be the Cartier dual of $H^{\mathrm{ab}}_{\Bar{v}}$. By \cite{}, we have an isomorphism of $\Gamma_k$-modules $\text{Pic}(\Bar{V})\simeq \hat{H}^{\mathrm{ab}}_{\Bar{v}}$ As a consequence, the Hochschild–Serre spectral sequence provides an exact sequence:
-\[
-\text{Br}(k) \to \text{Br}_1(V) \to H^1(k, \hat{H}^{\mathrm{ab}}_{\Bar{v}}) \xrightarrow{\delta} H^3(k, \bar{k}^*).
-\]
-The map $\delta$ is trivial if $V$ admits a zero-cycle of degree $1$ or if $k$ is a number field. If this is the case, we obtain a short exact sequence
-\[0\to \Br_0(V)\to \Br_1(V)\to H^1(k, \hat{H}^{\mathrm{ab}}_{\Bar{v}})\to 0.\]
-
-
-\begin{comment}
-\begin{definition}
-    Let $H$ be a group of exponent $d\geq 1$. We write $H/\textrm{cong}$ for the set of conjugacy classes of $H$. If $h\in H$, we denote by $[h]$ the conjugacy class of $h$. The group $(\Z/d\Z)^{\times}$ acts on $H/\textrm{cong}$ by $m\cdot [x]=[x^m]$. By definition, the outer exponent of $H$ is the smallest positive divisor $e$ of $d$ such that this action factors through the quotient map $(\mathbb{Z}/d)^{\times} \rightarrow (\mathbb{Z}/e)^{\times}$. 
-\end{definition}
-
-Let $e$ denote the outer exponent of $\overline{H}$. We fix a finite Galois subextension $L/k$ of $k/k$, with Galois group $G = \text{Gal}(L/k)$, satisfying the following three conditions:
-(1) $L$ contains all $e$-th roots of unity;
-(2) $V(L) \neq \emptyset$;
-(3) the natural outer action of $\Gamma_k$ on $\overline{H}$ factors through $G = \text{Gal}(L/k)$.
-
-In particular, the action of $\Gamma_k$ on both $\overline{H}_{ab}$ and $\hat{\overline{H}}_{ab}$ factors through $G$: we may, and will, consider these two abelian groups as $G$-modules and view $H^1(G, \hat{\overline{H}}_{ab})$ as a subgroup of $H^1(k, \hat{\overline{H}}_{ab})$ via the inflation map $H^1(G, \hat{\overline{H}}_{ab}) \hookrightarrow H^1(k, \hat{\overline{H}}_{ab})$.
-
-We let $\chi: G \rightarrow (\mathbb{Z}/e)^*$ be the homomorphism induced by the cyclotomic character and remark that the outer action of $G$ on $\overline{H}$ induces an action of $G$ on the set $\overline{H}/(conjugacy)$ of conjugacy classes of the group $\overline{H}$. 
-
-Let $\sigma \in G$ and $u \in \overline{H}$ satisfy the equality $\sigma[u] = [u^{\chi(\sigma)}]$ in $\overline{H}/(conjugacy)$. Then the image $u$ of $u$ in $\overline{H}_{ab}$ satisfies $\sigma(u) = \chi(\sigma)u$, and is hence $\sigma$-invariant when considered as an element of the twisted Cartier dual $\text{Hom}(\hat{\overline{H}}_{ab}, \mu_\infty)$ of $\hat{\overline{H}}_{ab} = \text{Hom}(\overline{H}_{ab}, \mu_\infty)$, where $\mu_\infty$ denotes the group of roots of unity in $k^*$ equipped with the trivial Galois action. (This bidual is canonically isomorphic to $\overline{H}_{ab}$ as an abelian group, with the Galois action twisted by $\chi$.) In particular, if we let $\mathbb{Z}$ act on $\text{Hom}(\hat{\overline{H}}_{ab}, \mu_\infty)$ via $\sigma$, then we may view $u$ as an element of $H^0(\mathbb{Z}, \text{Hom}(\hat{\overline{H}}_{ab}, \mu_\infty))$. We hence obtain a composite map:
-\[
-H^1(G, \hat{\overline{H}}_{ab}) \xrightarrow{\sigma^*} H^1(\mathbb{Z}, \hat{\overline{H}}_{ab}) \xrightarrow{x \mapsto u \cup x} H^1(\mathbb{Z}, \mu_\infty) = \mu_\infty,
-\]
-where $\sigma^*$ is the pull-back map along $\mathbb{Z} \rightarrow G$, $1 \mapsto \sigma$.
-
-\end{comment}
-
-
-
-\begin{theorem}
-    There is an equality
-    \begin{align*}
-        \Br_{1,\nr}(V)/\Br_0(V) = \{\beta \in H^1(G, \hat{H}^{\mathrm{ab}}_{\Bar{v}}) \,|\, \delta(\beta) = 0 \text{ and } u \cup \sigma^*\beta = 1 \text{ in $\mu_\infty$}\\
-        \text{for all $u \in \hat{H}_{\Bar{v}}$ and $\sigma \in G$ such that $\sigma[u] = [u^{\chi(\sigma)}]$ in $\hat{H}_{\Bar{v}}/\text{Conj}$}\}.
-    \end{align*}
-\end{theorem}
-
-
-
-
-\subsection{Elliptic normal curves}
-
-
-
-\begin{proposition}
-    Let $E$ be an elliptic curve over a field $k$ of characteristic zero and let $N$ be an integer. Let $V_E$ be the
-    Hilbert scheme of elliptic normal curves $C$ in $\bP^{N-1}_k$
-    with a fixed isomorphism $\Pic_{C/k}^0\iso E$. 
-    If the image of the Galois group of $k$ in $\GL_2(\bZ/N)$ associated to $E[N]$
-    is conjugate to the unipotent group $$U_2=\left\{\begin{pmatrix}1&*\\0&1\end{pmatrix}\colon
-    *\in\bZ/N\right\},$$ then the pullback map $$\Br(k)\rightarrow\Br_{1,\nr}(V_E)$$
-    is an isomorphism.
-\end{proposition}
-
-\begin{proof}
-    Since $V_E$ has a rational point, corresponding to $E$ embedded into $\bP^{N-1}_k$
-    via a line bundle $\Lscr$ of degree $N$ and a choice of basis of $\H^0(E,\Lscr)$, the map
-    $\Br(k)\rightarrow\Br_{1,\nr}(V_E)$ is injective with image $\Br_0(V)$. 
-    
-    In order to prove that $\Br(k)\rightarrow\Br_{1,\nr}(V_E)$ is surjective, we use the criterion of
-    Harpaz--Wittenberg~\cite{harpaz-wittenberg-massey}. The Hochschild-Serre spectral sequence yields an exact sequence
-    \[\Br(k)\to \Br(V_E)\to H^1(k,\Pic(\Bar{V}))\xrightarrow{\delta}H^3(k,\Bar{k}^\times).\]
-    Here we have used the fact that $\Bar{k}[V_E]^\times=\Bar{k}^\times$, by Rosenlicht's Lemma \cite{}. Moreover, since $V_E(k)\neq \emptyset$, the map $\delta$ is equal to zero. Finally, by \cite{}, we have a $\Gamma_k$-equivariant isomorphism $\Pic(\Bar{V}_E)\simeq H^{\mathrm{ab}}_N$, and hence
-    \[\Pic(\Bar{V}_E)\simeq E[N](\Bar{k}).\]
-    
-    It follows that the map $\Br(V_E)\to H^1(k,\Pic(\Bar{V}))$ identifies $\Br(V_E)/\Br_0(V_E)$ with a subgroup of $H^1(k,E[N])$. We now apply \cite[Proposition 3.3]{harpaz-wittenberg-massey} to obtain the following. An element $\beta\in H^1(k,E[N])$ belongs to $\Br(V_E)/\Br_0(V_E)$ if and only if for all $\sigma\in \Gamma_k$ and $u\in H_N$ such that $\sigma(u)$ is conjugate to $u^{\chi(\sigma)}$, the pairing
-    \[E[N](\Bar{k})^{\langle\sigma\rangle}\times E[N](\Bar{k})/(\sigma-1)\to \mu_N(\Bar{k})\]
-    induced by the Weil pairing sends $(\beta_{\sigma},\Bar{u})$ to $1$. 
-\end{proof}
-
-\begin{remark}
-    The assumption on the Galois representation implies that $E[N]$ sits inside a maximally non-split exact sequence
-    $$0\rightarrow\bZ/N\rightarrow E[N]\rightarrow\bZ/N\rightarrow 0.$$
-\end{remark}
-
-
-
-\begin{lemma}
-    Let $k$ be a field, let $N\geq 1$ be an integer invertible in $k$, let $\chi\in H^1(k,\Z/N\Z)$ and $a\in k^\times$, let $A\in \Br(k)$ be the Brauer class of the degree-$n$ central simple $k$-algebra $(\chi,a)$, and let $k'=\Bar{k}^{\mathrm{Ker}\chi}$. Let $E$ be an elliptic curve over $k$ such that $E[N](k')=\{0\}$, and let $V_E$ be the Hilbert scheme of elliptic normal curves $C$ in $\bP(A)$
-    with a fixed isomorphism $\Pic_{C/k}^0\iso E$. Then the restriction map
-    \[\Br_1(V_E)/\Br_0(V_E)\to \Br_1((V_E)_{k'})/\Br_0((V_E)_{k'})\]
-    is injective. In particular, if $\Br_{1,nr}((V_E)_{k'})=\Br_0((V_E)_{k'})$, then $\Br_{1,nr}(V_E)=\Br_0(V_E)$.
-\end{lemma}
-    
-\begin{proof}
-    By the inflation-restriction sequence, the kernel of the restriction map $H^1(k,E[N])\to H^1(k',E[N])$ is isomorphic to $H^1(k'/k,E[N](k'))$. Since $E[N](k')$ is trivial, so is $H^1(k'/k,E[N](k'))$, and hence $H^1(k,E[N])\to H^1(k',E[N])$ is injective.  The conclusion follows from a diagram chase in the following commutative diagram of exact sequences of abelian groups
-    \[
-    \begin{tikzcd}
-        0\arrow[r] &  \Br_0(V_E) \arrow[r] \arrow[d] & \Br_1(V_E) \arrow[r] \arrow[d] & H^1(k,E[N])\arrow[d,hook] \\
-        0\arrow[r] &  \Br_0((V_E)_{k'}) \arrow[r] & \Br_1((V_E)_{k'}) \arrow[r] & H^1(k',E[N])
-    \end{tikzcd}
-    \]
-    where the rows come from the Hochschild-Serre spectral sequence and the vertical arrows are restriction maps. 
-\end{proof}
-
-
-\begin{lemma}
-    Let $k$ be a field, let $N\geq 1$ be an integer invertible in $k$, let $E$ be an elliptic curve over $k$, let $V_E$ be the Hilbert scheme of elliptic normal curves $C$ in $\bP^{N-1}_k$
-    with a fixed isomorphism $\Pic_{C/k}^0\iso E$. Let $k'$ be a field extension of $k$, of degree prime to $N$. Then the restriction map
-    \[\Br_1(V_E)/\Br_0(V_E)\to \Br_1((V_E)_{k'})/\Br_0((V_E)_{k'})\]
-    is injective.
-\end{lemma}
-
-\begin{proof}
-    By the inflation-restriction sequence, the kernel of the restriction map $H^1(k,E[N])\to H^1(k',E[N])$ is isomorphic to $H^1(k'/k,E[N](k'))$. Since the order of $E[N](k')$ divides $N^2$ and $[k':k]$ is prime to $N$, the group $H^1(k'/k,E[N](k'))$ is trivial, and hence $H^1(k,E[N])\to H^1(k',E[N])$ is injective. The conclusion follows from a diagram chase in the following commutative diagram of exact sequences of abelian groups
-    \[
-    \begin{tikzcd}
-        0\arrow[r] &  \Br_0(V_E) \arrow[r] \arrow[d] & \Br_1(V_E) \arrow[r] \arrow[d] & H^1(k,E[N])\arrow[d,hook] \\
-        0\arrow[r] &  \Br_0((V_E)_{k'}) \arrow[r] & \Br_1((V_E)_{k'}) \arrow[r] & H^1(k',E[N])
-    \end{tikzcd}
-    \]
-    where the rows come from the Hochschild-Serre spectral sequence and the vertical arrows are restriction maps.
-\end{proof}
-
-
-
-\section{Local points everywhere via Tate curves}
-
-\subsection{Local fields}
-
-Suppose that $K$ is a local field with uniformizer $\varpi$ and residue field $k\iso\bF_{\ell^f}$ and that $E$ is an elliptic curve over $K$. Then, Tate and Milne 
-showed that there is a non-degenerate continuous pairing $E(K)\times\WC(E/K)\rightarrow\bQ/\bZ$
-where $E(K)$ is given the topology arising from the local field and $\WC(E/K)$ is given the discrete
-topology.
-
-Assume that $p$ is a prime invertible in $k$ and so large that no elliptic curve over $k$ admits
-a $p$-torsion point (for example via the Hasse bound $|p-\ell^f-1|>2\sqrt{\ell^f}$).
-In order for $\WC(E/K)$ to admit a $p$-torsion point, by the Tate pairing, we must thus have that
-$E$ has split multiplicative
-reduction and that $p$ divides $-v_{\varpi}(j(E))=v_\varpi(\Delta(E))$.
-
-We can always arrange this by letting $E$ be the Tate curve
-$E=K^\times/(\varpi^p)^{\bZ}$, which has split multiplicative reduction
-and $j$-invariant with $\varpi$-adic valuation $-p$.
-
-When $p$ is not large, the situation for general $E$ is less clear, but it is still the case that the Tate curve
-$E=K^\times/(\varpi^p)$ will have a torsor splitting the $p$-torsion Brauer class (at least if $p$
-is invertible in $K$).
-
-
-
-\subsection{Elliptic curves with split multiplicative reduction at specified primes}
-
-Now, let $K=\bQ$, $p$ a prime, and $\ell_1,\ldots,\ell_r$ other primes.
-
-\begin{construction}\label{const:multiplicative}
-    Let $E$ be an elliptic curve over $\bQ$ with $j$-invariant
-    $$j(E)=\frac{1}{\ell_1^p\cdots\ell_r^p}.$$
-    At each completion, $E_{\bQ_{\ell_i}}$ is a quadratic twist of a Tate curve
-    (see~\cite[Thm.~C.14.1]{silverman}). Let $\chi_i$ denote the corresponding $i$th quadratic character. By the
-    Grunwald--Wang theorem, there is a character $\chi$ over $\bQ$ such that $\chi$ completes to
-    each $\chi_i$. It follows that the quadratic twist $E_\chi$, which has the same $j$-invariant,
-    has split multiplicative reduction at each $\ell_i$.
-\end{construction}
-
-\begin{proposition}
-    Let $k$ be a global field and let $A$ be a central simple algebra over $k$, ramified at finite
-    primes $\pi_1,\ldots,\pi_r$. For any $j$-invariant $j_0$ satisfying
-    $v_{\pi_i}(j)=-N$ for $1\leq i\leq r$ there is an elliptic curve $E$ defined over $k$ of
-    $j$-invraiant $j(E)=j_0$ such that $V_E^A(k_v)$ is non-empty for all places $v$.
-\end{proposition}
-
-\begin{proof}
-    At finite places, this follows from the construction. At infinite real places $v$, $E(k_v)$ admits a
-    $k_v$-rational $2$-torsion point and hence the restriction of $\alpha$ to $k_v$ is split by an
-    $E$-torsor corresponding to a choice of dual of this $2$-torsion point under the Tate pairing.
-\end{proof}
-
-
-
-\section{Proof of Theorem \ref{mainthm}}
-
-\begin{proof}
-    We may write $A=(\chi,a)$ for some $\chi\in H^1(k,\Z/N\Z)$ and $a\in k^\times$. 
-    
-    Let $V_{E,A}$ be the Hilbert scheme of elliptic normal curves $C$ in $\bP(A)$ with a fixed isomorphism $\Pic_{C/k}^0\iso E$. By ???, the collection of elliptic curves $E$ over $k$ such that $V_{E,A}(k_v)\neq \emptyset$ for every place $v$ of $k$ is infinite. By ???, the collection of elliptic curves $E$ over $k$ such that the group $E[p](k')$ is non-trivial is finite. Therefore, there exists an elliptic curve $E$ over $k$ such that $E[p](k')$ is trivial and $V_{E,A}(k_v)\neq \emptyset$ for every place $v$ of $k$.
-
-    We now show that $\Br_{1,\nr}(V_{E,A})=\Br_0(V_{E,A})$. Let $k'=\Bar{k}^{\mathrm{Ker}\chi}$, let $\Delta= \Gamma_{k'}$ be the inverse image of a $p$-Sylow subgroup of $\mathrm{Out}(H_{\Bar{v}})$, and let $k''$ be the extension of $k'$ fixed by $\Delta$. By ???, we have $\Br_{1,\nr}((V_{E,A})_{k''})=\Br_0((V_{E,A})_{k''})$. By ???, we deduce that $\Br_{1,\nr}((V_{E,A})_{k'})=\Br_0((V_{E,A})_{k'})$. Finally, by ???, we obtain that $\Br_{1,\nr}(V_{E,A})=\Br_0(V_{E,A})$. We conclude by ???.
-    \end{proof}
-
-
-\section{Future directions}
-
-\paragraph{Are there ever unramified Brauer classes?} We can prove that under certain assumptions on
-$E$ that the split form $V_E$ has no non-constant unramified classes. Are there ever non-constant
-unramified classes? Either in the split or the non-split case? One way to show this would be to
-prove that $\Pic_{V^c_E/k}$ is a constant lattice, so that $\H^1(\Spec k,\Pic_{V^c_E/k})=0$. Now,
-I'm not sure how to prove this, but Vakil and Zinger study
-in~\cite{vakil-zinger,vakil-zinger-announce} compactificiations of the Hilbert scheme $V$ of elliptic normal
-curves. This is obtained at blowing up at certain naturally defined types of degenerations. These
-subspaces are defined over $\bZ$ (or perhaps $\bZ[\tfrac{1}{N}]$) and their arguments give
-compactifications of $V_{j(E)}^\alpha$ as well. I wonder, since everything is so stable, if this is
-enough to make a geometric argument about $\Pic_{V^c_E/k}$.
-
-Relatedly, there is a surjective map $\Pic_{V^c_E/k}\rightarrow\Pic_{V_E/k}$. I would love to know
-that $\Pic_{V^c_E/k}$ were torsion free so that the kernel of this map were also torsion free. In
-fact, is it the case that for any smooth projective {\em rational} variety one hac $\Pic_{X/k}$ is
-torsion free?
-
-The idea would then be to argue that as $E$ varies over the moduli of elliptic curves one gets some
-lattice of fixed rank. Then, one should argue that $\pi_1\bA^1=0$ to conclude that in fact there is
-no variation and make some further arguments to conclude that $\Pic_{V^c_E/k}$ is a constant
-lattice, from which it would follow that the unramified classes are always constant. Is this
-feasible at all?
-
-\paragraph{Can we just compute Brauer--Manin directly?} We have such control over the local elements
-of $V_E^k$ that it tempting to show directly that there are elements in the Brauer--Manin fixed
-locus. The issue is that even in the split case given $\alpha\in\Br(V_E)$ and $x\in V_E(k_v)$ it is
-hard to understand what $x^*\alpha$ is.
-Nevertheless, this should be entirely controlled by the geometry of the situation. If possible, we
-could presumably generalize Theorem~\ref{mainthm} to all $N$.
-
-This is a test.
-
-
-\small
-\bibliographystyle{amsplain}
-\bibliography{enc}
-
+	
+	\maketitle
+	\tableofcontents
+	
+	
+	
+	\section{Introduction}
+	
+	Let $k$ be a field, let $\Bar{k}$ be a separable closure of $k$, let $N\geq 1$ be an integer, and
+	let $A$ be a central simple algebra of degree $N$ over $k$. We write $\bP(A)$ for the Severi--Brauer
+	variety of $A$. The central simple algebra $A$ defines a class $\alpha\in\Br(k)$. It is an open
+	problem of Clark and Saltman to determine whether $\alpha$ (or equivalently $A$) is split by a genus $1$ curve, which is
+	to say whether there exists a smooth proper geometrically connected genus $1$ curve $C$ defined over
+	$k$ such that the image of $\alpha$ in $\Br(k(C))$ vanishes.
+	
+	The genus $1$ curve splitting problem, and variants of it, have been considered
+	in~\cite{dejong-ho,ho-lieblich,antieau-auel,saltman-genus,huybrechts-mattei}. The problem of determining
+	which Brauer classes are split by a given genus $1$ curve has been studied
+	by~\cite{ciperiani-krashen}, who give algorithms over number fields.
+	
+	Here is a brief summary of what is known; for more details and examples, see~\cite{antieau-auel}.
+	\begin{enumerate}
+		\item[(a)] Over an arbitrary field, geometric arguments using the linear algebra of vector
+		bundles on Severi--Brauer varieties show that central simple algebras of
+		degree at most $5$ are split by genus $1$ curves~\cite{dejong-ho}.
+		\item[(b)] Over an arbitrary field, every Brauer class is split by a torsor for the Jacobian of
+		a curve or a product of two curves~\cite{ho-lieblich}.
+		\item[(c)] Over a local field, every Brauer class is split by a genus $1$ curve~\cite[Ex.~2.4]{antieau-auel}.
+		\item[(d)] Over a number field, every central simple algebra of degrees $N=2,\ldots,10$ or $N=12$ is split
+		by a genus $1$ curve~\cite{antieau-auel} (with the assumption that $k$ contains a primitive $8$th root of unity
+		if $N=8$, an element of the form $\zeta_9+\zeta_9^{-1}$, where $\zeta_9$ is a primitive
+		$9$th root of unity, if $N=9$, and a primitive $4$th root of unity if $N=12$).
+		\item[(e)] If there is an elliptic curve $E$ over $k$ with full level $N$ structure
+		$E[N]\iso\bZ/N\times\mu_N$, then every {\em cyclic} central simple algebra of degree $N$ is
+		split by a genus $1$ curve~\cite{antieau-auel}.
+	\end{enumerate}
+	
+	Geometrically, a central simple algebra $A$ is split by a genus $1$ curve if and only if there is a genus $1$ curve $C$
+	defined over $k$ and a $k$-linear morphism $C\rightarrow\bP(A)$. The geometry of this map is
+	unspecified.
+	
+	By definition, if $A$ is a central simple algebra of degree $N$, then an elliptic normal curve in $\bP(A)$ is a
+	smooth projective genus $1$ curve $C\subset \bP(A)$ such that $C_{\Bar{k}}\subset
+	\bP(A_{\Bar{k}})\simeq \bP_{\Bar{k}}^{N-1}$ has degree $N$ and is not contained in any hyperplane of
+	$\bP_{\Bar{k}}^{N-1}$.
+	% (This definition is independent of the choice of the isomorphism
+	% $\bP(A_{\Bar{k}})\simeq \bP_{\Bar{k}}^{n-1}$.)
+	Equivalently, the embedding
+	$C_{\Bar{k}}\subseteq\bP(A_{\Bar{k}})\iso\bP^{N-1}$ is defined by a full linear system of degree $N$
+	on $C_{\Bar{k}}$. Note that despite the name, if $[A]\neq 0$ in $\Br(k)$, then $\bP(A)$ has no
+	rational points. Hence, if $C\subseteq\bP(A)$ is an elliptic normal curve, then $C$ has no rational points either, so it is a
+	genus $1$ curve only, not an elliptic curve.
+	
+	\begin{theorem}\label{mainthm}
+		Let $k$ be a number field, $p$ be a prime number, and $A$ be a central simple algebra of degree
+		$p$ over $k$. Then there exists an elliptic normal curve $C\subset \bP(A)$ over $k$. In
+		particular, $C$ splits $A$.
+	\end{theorem}
+	
+	In fact, our method works for central simple algebras of more general square-free integer degrees
+	$N\geq 2$, which we
+	call $\GL_2$-general, meaning that if $p\;|\;N$, then the order of a $p$-Sylow subgroup of
+	$\GL_2(\bZ/N)$ is $p$.\footnote{\BA{Comparing a list of $\GL_2$-general numbers generated by a short
+			{\ttfamily SAGE} script and the {\ttfamily OEIS} turns up integer sequence {\ttfamily A350342},
+			which is the sequence of integers $N$ such that every group of order $N^2$ is abelian. I conjecture
+			that these sequences are the same and I checked roughly up to $N=9997$.}} Among the numbers up to $100$, besides the primes, the following integers are
+	$\GL_2$-general:
+	$$35,\quad 65,\quad 77,\quad 85.$$
+	Thus, for example, for $N=35,65,77,85$, every twisted form of $\bP^{N-1}$ over a number field $k$ contains an
+	elliptic normal curve. For numbers up to $10\,000$ there are $1229$ primes and $2510$ numbers which
+	are $\GL_2$-general.
+	
+	Our proof of Theorem~\ref{mainthm} is to rephrase the problem as one of finding rational points on
+	certain Hilbert scheme constructions. Namely, if $E$ is an elliptic curve, we let $V_E^A$ be the scheme of elliptic normal curves
+	$C$ in $\bP(A)$ together with a fixed isomorphism $\Pic_{C/k}^0\iso E$.
+	This is a smooth scheme which is an $\Aut_{E/k}$-torsor over $V_{j(E)}^A$, the closed subscheme of the
+	Hilbert scheme of elliptic normal curves in $\bP(A)$ whose Jacobians have $j$-invariant $j(E)$.
+	Here, $\Aut_{E/k}$ is the group scheme of automorphisms of the elliptic curve $E$, i.e.,
+	automorphisms of the scheme $E$ which preserve the basepoint $0\in E$.
+	
+	We prove that for countably many $j$-invariants $j_0$ there are judicious choices of $E$ with
+	$j(E)=j_0$ such that the scheme $V_E^A$ has $k_v$-points for all places $v$. Then, we show that for
+	all but finitely many of these choices there is no Brauer--Manin obstruction to the existence of
+	rational points by showing that the unramified Brauer group of $V_E^A$ is the image
+	of $\Br(k)\rightarrow\Br(V_E^A)$.\footnote{This part of our argument is the only one where we need
+		to fix $N$ to be $\GL_2$-general.} As $V_E^A$ is geometrically a homogeneous space for $\SL_N$ with
+	stabilizer a Heisenberg group of order $N^3$, this is already enough to conclude that for these $E$ the scheme $V_E^A$ has a
+	$0$-cycle of degree $1$ by a theorem of \BA{who?}. We conclude by using \BA{forthcoming} work of Demeio,
+	which shows that for spaces which are geometrically homogeneous under actions of semisimple simply
+	connected algebraic groups with solvable stabilizers, like the Heisenberg groups of order $N^3$ in
+	$\SL_N$, the Brauer--Manin obstruction to rational points is the only one.
+	This is a special case of the open Colliot-Th\'el\`ene conjecture which states that for geometrically
+	rationally connected varieties the Brauer--Manin obstruction is the only obstruction to the
+	existence of rational points.
+	
+	\BA{TODO: remark that in fact one gets density of rational points and hence each $V_E^A(k)$ is in
+		fact countably infinite.}
+	
+	
+	
+	\paragraph{Ackowledgments.}
+	We thank Danny Krashen, Eoin Mackall, and David Saltman for conversations related to the topic of the
+	present paper. Thanks also go to Julian Demeio for sharing with us his results on the Brauer--Manin
+	obstruction before they were released.
+	
+	The first author was supported by NSF grants DMS-2102010 and DMS-2152235, by Simons Fellowship
+	666565, and by the Simons Collaboration on Perfection (Award MP-SCMPS-00001529-11).
+	
+	
+	
+	
+	
+	\section{Hilbert schemes of elliptic normal curves}
+	
+	
+	[...]
+	
+	\begin{proposition}
+		Let $k$ be a field, $E$ be an elliptic curve, $A$ be a central simple algebra of degree $n\geq 1$ over $k$. There exists a $\mathrm{SL}(A)$-homogeneous space $V_E^A$ such that:
+		\begin{itemize}
+			\item if $\Bar{v}\in V_E^A(\Bar{k})$, the geometric stabilizer $H_{\Bar{v}}\subset \mathrm{SL}(A_{\Bar{k}})\simeq \mathrm{SL}_n$ is conjugate to $\mathrm{He}_n$. 
+			\item for all fields extensions $K/k$, $V_{E/A}(K)\neq\emptyset$ if and only if there exist an elliptic normal curve $C\subset \bP(A_K)$ over $K$ and an isomorphism of elliptic curves $J(C)\simeq E_K$.
+		\end{itemize}
+	\end{proposition}
+	
+	
+	
+	
+	\section{Unramified Brauer group calculations}
+	
+	\subsection{Preliminaries on unramified Brauer groups of homogeneous spaces}
+	
+	In this section, we let $k$ be a field of characteristic zero.
+	
+	\begin{definition}
+		If $V$ is a smooth, geometrically integral scheme over $k$. The unramified Brauer group $\Br_{\nr}(V)\subset \Br(V)$ of $V$ is defined as the image of $\Br(V^c)$ in $\Br(V)$, where $V^c$ is a smooth projective compactification of $V$. (The definition of $\Br_{\nr}(V)$ does not depend on the choice of $V^c$.) We
+		let $\Br_1(V)$ be the kernel of the restriction map $\Br(V)\to \Br(V_{\Bar{k}})$. We let $\Br_{1,\nr}(V)=\Br_\nr(V)\cap\Br_1(V)$ be the subgroup of $\Br(V)$ of geometrically trivial unramified Brauer classes. This group contains as a
+		subgroup the group $\Br_0(V)=\im(\Br(k)\rightarrow\Br(V))$.
+	\end{definition}
+	
+	Suppose that $k$ is a number field, let $\Omega_k$ be the set of places of $k$ and, for every $v \in \Omega_k$, write $\text{inv}_v: Br(k_v) \to \mathbb{Q}/\mathbb{Z}$ for the Hasse invariant. We have the Brauer--Manin pairing
+	\[
+	Br_\nr(V) \times \prod_{v \in \Omega_k} V(k_v) \to \mathbb{Q}/\mathbb{Z}, \qquad (\beta, (x_v)) \mapsto \sum_{v \in \Omega_k} \text{inv}_v \, \beta(x_v).
+	\]
+	Note that $\sum_{v \in \Omega_k} \text{inv}_v \, \beta(x_v)$ is finite because $\beta$ is
+	unramified. The subset of $\prod_{v \in \Omega_k} V(k_v)$ consisting of the $(x_v)_{v\in \Omega_k}$
+	that are orthogonal to $\Br_\nr(V)$ with respect to the Brauer--Manin pairing is called the
+	Brauer--Manin set. The standard exact sequence
+	$$0\rightarrow\Br(k)\rightarrow\bigoplus_v\Br(k_v)\xrightarrow{\sum\inv_v}\bQ/\bZ\rightarrow 0$$ of class field theory implies that the image of $V(k)$ in $\prod_{v \in \Omega_k} V(k_v)$ is contained in the Brauer--Manin set.
+	
+	The following theorem is due to Demeio \cite{}.
+	
+	\begin{theorem}[Demeio]
+		Let $k$ be a number field, let $V$ be a homogeneous space of a semi-simple and simply connected
+		linear group $G$ with finite solvable geometric stabilizers, and let $V^c$ be a smooth
+		compactification of $V$. Then $V^c(k)$ is dense in the Brauer–Manin set of $V^c$ with respect to
+		the product of the $v$-adic topologies. In particular, if the Brauer--Manin set of $V$ is
+		non-empty, then $V$ has a $k$-rational point.
+	\end{theorem}
+	
+	\subsection{The unramified Brauer group of a homogeneous space}
+	Let $k$ be a field, let $G$ be a simply connected semisimple $k$-group, let $V$ be a homogeneous space under $G$, let $\Bar{v}\in V(\Bar{k})$ be a geometric point of $V$, and let $H_{\Bar{v}}$ be the geometric stabilizer of $\Bar{v}$. We suppose that $H_{\Bar{v}}$ is finite.
+	
+	Let $G_{\Bar{v}} \subseteq G(k) \rtimes \Gamma_k$ is the subgroup consisting of those pairs $(g, \sigma)$ such that $g\sigma(\Bar{v}) = \Bar{v}$. We have a short exact sequence of abstract groups
+	\[
+	1 \to H_{\Bar{v}} \to G_{\Bar{v}} \to \Gamma_k \to 1.
+	\]
+	This short exact sequence induces an outer action of $\Gamma_k$ on $H_{\Bar{v}}$, that is, a homomorphism $\Gamma_k\to \mathrm{Out}(H_{\Bar{v}})$. 
+	
+	We write $\mu_{\infty}\subset \Bar{k}^\times$ for the $\Gamma_k$-module given by the roots of unity in $\Bar{k}^\times$. Let $H^{\mathrm{ab}}_{\Bar{v}}$ be the abelianization of  $H^{\mathrm{ab}}$, and let $\hat{H}^{\mathrm{ab}}_{\Bar{v}}= \mathrm{Hom}(H^{\mathrm{ab}}_{\Bar{v}}, \mu_{\infty})$ be the Cartier dual of $H^{\mathrm{ab}}_{\Bar{v}}$. By \cite{}, we have an isomorphism of $\Gamma_k$-modules $\text{Pic}(\Bar{V})\simeq \hat{H}^{\mathrm{ab}}_{\Bar{v}}$ As a consequence, the Hochschild–Serre spectral sequence provides an exact sequence:
+	\[
+	\text{Br}(k) \to \text{Br}_1(V) \to H^1(k, \hat{H}^{\mathrm{ab}}_{\Bar{v}}) \xrightarrow{\delta} H^3(k, \bar{k}^*).
+	\]
+	The map $\delta$ is trivial if $V$ admits a zero-cycle of degree $1$ or if $k$ is a number field. If this is the case, we obtain a short exact sequence
+	\[0\to \Br_0(V)\to \Br_1(V)\to H^1(k, \hat{H}^{\mathrm{ab}}_{\Bar{v}})\to 0.\]
+	
+	
+	We write $\chi_{cyc}:\Gamma_k\to \hat{Z}^\times$ for the cyclotomic character. Let $\sigma \in \Gamma_k$ and $u \in H_{\Bar{v}}$ be such that $\sigma(u)$ is conjugate to $u^{\chi(\sigma)}$. Then the image $\Bar{u}$ of $u$ in $H^{ab}_{\Bar{v}}$ satisfies $\sigma(\Bar{u}) = \chi(\sigma)\Bar{u}$, and is hence $\sigma$-invariant when considered as an element of $\text{Hom}(\hat{H}^{ab}_{\Bar{v}}, \mu_\infty)$, where $\Bar{\mu}_\infty$ denotes the group of roots of unity in $\Bar{k}^*$ equipped with the trivial Galois action. In particular, if we let $\mathbb{Z}$ act on $\text{Hom}(\hat{H}^{ab}_{\Bar{v}}, \mu_\infty)$ via $\sigma$, then we may view $u$ as an element of $H^0(\mathbb{Z}, \text{Hom}(\hat{H}^{ab}_{\Bar{v}}, \mu_\infty))$. We hence obtain a composite map:
+	\[
+	H^1(k, \hat{H}^{ab}_{\Bar{v}}) \xrightarrow{\sigma^*} H^1(\mathbb{Z}, \hat{\overline{H}}_{ab}) \xrightarrow{x \mapsto u \cup x} H^1(\mathbb{Z}, \mu_\infty) = \mu_\infty,
+	\]
+	where $\sigma^*$ is the pull-back map along $\mathbb{Z} \rightarrow G$, $1 \mapsto \sigma$.
+	
+	[...]
+	
+	
+	\begin{theorem}\label{brauer-homogeneous}[...]
+		There is an equality
+		\begin{align*}
+			\Br_{1,\nr}(V)/\Br_0(V) = \{\beta \in H^1(k, \hat{H}^{\mathrm{ab}}_{\Bar{v}}) \,|\, \delta(\beta) = 0 \text{ and } u \cup \sigma^*\beta = 1 \text{ in $\mu_\infty$}\\
+			\text{for all $u \in \hat{H}_{\Bar{v}}$ and $\sigma \in \Gamma_k$ such that $\sigma(u)$ is conjugate to $u^{\chi_{cyc}(\sigma)}$ in $\hat{H}_{\Bar{v}}$}\}.
+		\end{align*}
+	\end{theorem}
+	
+	\begin{remark}
+		We maintain the notation of Theorem \ref{brauer-homogeneous}. Let $e$ denote the outer exponent of $H_{\Bar{v}}$, and fix a finite Galois subextension $k\subset L\subset \Bar{k}$, with Galois group $G = \text{Gal}(L/k)$, satisfying the following three conditions:
+		\begin{enumerate}
+			\item $L$ contains all $e$-th roots of unity;
+			\item $V(L) \neq \emptyset$;
+			\item the  outer action of $\Gamma_k$ on $H_{\Bar{v}}$ factors through $G = \mathrm{Gal}(L/k)$.
+		\end{enumerate}
+		Let $\beta\in H^1(k,\hat{H}^{ab}_{\Bar{v}})$ and let $b:\Gamma_k\to \hat{H}^{ab}_{\Bar{v}}$ be a $1$-cocycle representing $\beta$. If $\beta$ comes from $\Br_{1,\nr}(V)/\Br_0(V)$, then $b(\sigma)=0$ for every $\sigma\in \Gamma_L$. Therefore $\beta$ restricts to zero in $H^1(L,\hat{H}^{ab}_{\Bar{v}})$ and hence, by the inflation-restriction sequence, it comes from a unique element of $H^1(G,\hat{H}^{ab}_{\Bar{v}})$. Thus the conclusion of Theorem \ref{brauer-homogeneous} is equivalent to
+		\begin{align*}
+			\Br_{1,\nr}(V)/\Br_0(V) = \{\beta \in H^1(G, \hat{H}^{\mathrm{ab}}_{\Bar{v}}) \,|\, \delta(\beta) = 0 \text{ and } u \cup \sigma^*\beta = 1 \text{ in $\mu_\infty$}\\
+			\text{for all $u \in \hat{H}_{\Bar{v}}$ and $\sigma \in \Gamma_k$ such that $\sigma(u)$ is conjugate to $u^{\chi_{cyc}(\sigma)}$ in $\hat{H}_{\Bar{v}}$}\},
+		\end{align*}
+		which is the statement of \cite{}.
+		%In particular, the action of $\Gamma_k$ on both $\overline{H}_{ab}$ and $\hat{\overline{H}}_{ab}$ factors through $G$: we may, and will, consider these two abelian groups as $G$-modules and view $H^1(G, \hat{\overline{H}}_{ab})$ as a subgroup of $H^1(k, \hat{\overline{H}}_{ab})$ via the inflation map $H^1(G, \hat{\overline{H}}_{ab}) \hookrightarrow H^1(k, \hat{\overline{H}}_{ab})$. 
+	\end{remark}
+	
+	
+	
+	
+	\subsection{Elliptic normal curves}
+	
+	
+	
+	\begin{proposition}
+		Let $E$ be an elliptic curve over a field $k$ of characteristic zero and let $N$ be an integer. Let $V_E$ be the
+		Hilbert scheme of elliptic normal curves $C$ in $\bP^{N-1}_k$
+		with a fixed isomorphism $\Pic_{C/k}^0\iso E$. 
+		If the image of the Galois group of $k$ in $\GL_2(\bZ/N)$ associated to $E[N]$
+		is conjugate to the unipotent group $$U_2=\left\{\begin{pmatrix}1&*\\0&1\end{pmatrix}\colon
+		*\in\bZ/N\right\},$$ then the pullback map $$\Br(k)\rightarrow\Br_{1,\nr}(V_E)$$
+		is an isomorphism.
+	\end{proposition}
+	
+	\begin{proof}
+		Since $V_E$ has a rational point, corresponding to $E$ embedded into $\bP^{N-1}_k$
+		via a line bundle $\Lscr$ of degree $N$ and a choice of basis of $\H^0(E,\Lscr)$, the map
+		$\Br(k)\rightarrow\Br_{1,\nr}(V_E)$ is injective with image $\Br_0(V)$. 
+		
+		In order to prove that $\Br(k)\rightarrow\Br_{1,\nr}(V_E)$ is surjective, we use the criterion of
+		Harpaz--Wittenberg~\cite{harpaz-wittenberg-massey}. The Hochschild-Serre spectral sequence yields an exact sequence
+		\[\Br(k)\to \Br(V_E)\to H^1(k,\Pic(\Bar{V}))\xrightarrow{\delta}H^3(k,\Bar{k}^\times).\]
+		Here we have used the fact that $\Bar{k}[V_E]^\times=\Bar{k}^\times$, by Rosenlicht's Lemma \cite{}. Moreover, since $V_E(k)\neq \emptyset$, the map $\delta$ is equal to zero. Finally, by \cite{}, we have a $\Gamma_k$-equivariant isomorphism $\Pic(\Bar{V}_E)\simeq H^{\mathrm{ab}}_N$, and hence
+		\[\Pic(\Bar{V}_E)\simeq E[N](\Bar{k}).\]
+		
+		It follows that the map $\Br(V_E)\to H^1(k,\Pic(\Bar{V}))$ identifies $\Br(V_E)/\Br_0(V_E)$ with a subgroup of $H^1(k,E[N])$. We now apply \cite[Proposition 3.3]{harpaz-wittenberg-massey} to obtain the following. An element $\beta\in H^1(k,E[N])$ belongs to $\Br(V_E)/\Br_0(V_E)$ if and only if for all $\sigma\in \Gamma_k$ and $u\in H_N$ such that $\sigma(u)$ is conjugate to $u^{\chi(\sigma)}$, the pairing
+		\[E[N](\Bar{k})^{\langle\sigma\rangle}\times E[N](\Bar{k})/(\sigma-1)\to \mu_N(\Bar{k})\]
+		induced by the Weil pairing sends $(\beta_{\sigma},\Bar{u})$ to $1$. 
+	\end{proof}
+	
+	\begin{remark}
+		The assumption on the Galois representation implies that $E[N]$ sits inside a maximally non-split exact sequence
+		$$0\rightarrow\bZ/N\rightarrow E[N]\rightarrow\bZ/N\rightarrow 0.$$
+	\end{remark}
+	
+	
+	
+	\begin{lemma}
+		Let $k$ be a field, let $N\geq 1$ be an integer invertible in $k$, let $\chi\in H^1(k,\Z/N\Z)$ and $a\in k^\times$, let $A\in \Br(k)$ be the Brauer class of the degree-$n$ central simple $k$-algebra $(\chi,a)$, and let $k'=\Bar{k}^{\mathrm{Ker}\chi}$. Let $E$ be an elliptic curve over $k$ such that $E[N](k')=\{0\}$, and let $V_E$ be the Hilbert scheme of elliptic normal curves $C$ in $\bP(A)$
+		with a fixed isomorphism $\Pic_{C/k}^0\iso E$. Then the restriction map
+		\[\Br_1(V_E)/\Br_0(V_E)\to \Br_1((V_E)_{k'})/\Br_0((V_E)_{k'})\]
+		is injective. In particular, if $\Br_{1,nr}((V_E)_{k'})=\Br_0((V_E)_{k'})$, then $\Br_{1,nr}(V_E)=\Br_0(V_E)$.
+	\end{lemma}
+	
+	\begin{proof}
+		By the inflation-restriction sequence, the kernel of the restriction map $H^1(k,E[N])\to H^1(k',E[N])$ is isomorphic to $H^1(k'/k,E[N](k'))$. Since $E[N](k')$ is trivial, so is $H^1(k'/k,E[N](k'))$, and hence $H^1(k,E[N])\to H^1(k',E[N])$ is injective.  The conclusion follows from a diagram chase in the following commutative diagram of exact sequences of abelian groups
+		\[
+		\begin{tikzcd}
+			0\arrow[r] &  \Br_0(V_E) \arrow[r] \arrow[d] & \Br_1(V_E) \arrow[r] \arrow[d] & H^1(k,E[N])\arrow[d,hook] \\
+			0\arrow[r] &  \Br_0((V_E)_{k'}) \arrow[r] & \Br_1((V_E)_{k'}) \arrow[r] & H^1(k',E[N])
+		\end{tikzcd}
+		\]
+		where the rows come from the Hochschild-Serre spectral sequence and the vertical arrows are restriction maps. 
+	\end{proof}
+	
+	
+	\begin{lemma}
+		Let $k$ be a field, let $N\geq 1$ be an integer invertible in $k$, let $E$ be an elliptic curve over $k$, let $V_E$ be the Hilbert scheme of elliptic normal curves $C$ in $\bP^{N-1}_k$
+		with a fixed isomorphism $\Pic_{C/k}^0\iso E$. Let $k'$ be a field extension of $k$, of degree prime to $N$. Then the restriction map
+		\[\Br_1(V_E)/\Br_0(V_E)\to \Br_1((V_E)_{k'})/\Br_0((V_E)_{k'})\]
+		is injective.
+	\end{lemma}
+	
+	\begin{proof}
+		By the inflation-restriction sequence, the kernel of the restriction map $H^1(k,E[N])\to H^1(k',E[N])$ is isomorphic to $H^1(k'/k,E[N](k'))$. Since the order of $E[N](k')$ divides $N^2$ and $[k':k]$ is prime to $N$, the group $H^1(k'/k,E[N](k'))$ is trivial, and hence $H^1(k,E[N])\to H^1(k',E[N])$ is injective. The conclusion follows from a diagram chase in the following commutative diagram of exact sequences of abelian groups
+		\[
+		\begin{tikzcd}
+			0\arrow[r] &  \Br_0(V_E) \arrow[r] \arrow[d] & \Br_1(V_E) \arrow[r] \arrow[d] & H^1(k,E[N])\arrow[d,hook] \\
+			0\arrow[r] &  \Br_0((V_E)_{k'}) \arrow[r] & \Br_1((V_E)_{k'}) \arrow[r] & H^1(k',E[N])
+		\end{tikzcd}
+		\]
+		where the rows come from the Hochschild-Serre spectral sequence and the vertical arrows are restriction maps.
+	\end{proof}
+	
+	
+	
+	\section{Local points everywhere via Tate curves}
+	
+	\subsection{Local fields}
+	
+	Suppose that $K$ is a local field with uniformizer $\varpi$ and residue field $k\iso\bF_{\ell^f}$ and that $E$ is an elliptic curve over $K$. Then, Tate and Milne 
+	showed that there is a non-degenerate continuous pairing $E(K)\times\WC(E/K)\rightarrow\bQ/\bZ$
+	where $E(K)$ is given the topology arising from the local field and $\WC(E/K)$ is given the discrete
+	topology.
+	
+	Assume that $p$ is a prime invertible in $k$ and so large that no elliptic curve over $k$ admits
+	a $p$-torsion point (for example via the Hasse bound $|p-\ell^f-1|>2\sqrt{\ell^f}$).
+	In order for $\WC(E/K)$ to admit a $p$-torsion point, by the Tate pairing, we must thus have that
+	$E$ has split multiplicative
+	reduction and that $p$ divides $-v_{\varpi}(j(E))=v_\varpi(\Delta(E))$.
+	
+	We can always arrange this by letting $E$ be the Tate curve
+	$E=K^\times/(\varpi^p)^{\bZ}$, which has split multiplicative reduction
+	and $j$-invariant with $\varpi$-adic valuation $-p$.
+	
+	When $p$ is not large, the situation for general $E$ is less clear, but it is still the case that the Tate curve
+	$E=K^\times/(\varpi^p)$ will have a torsor splitting the $p$-torsion Brauer class (at least if $p$
+	is invertible in $K$).
+	
+	
+	
+	\subsection{Elliptic curves with split multiplicative reduction at specified primes}
+	
+	Now, let $K=\bQ$, $p$ a prime, and $\ell_1,\ldots,\ell_r$ other primes.
+	
+	\begin{construction}\label{const:multiplicative}
+		Let $E$ be an elliptic curve over $\bQ$ with $j$-invariant
+		$$j(E)=\frac{1}{\ell_1^p\cdots\ell_r^p}.$$
+		At each completion, $E_{\bQ_{\ell_i}}$ is a quadratic twist of a Tate curve
+		(see~\cite[Thm.~C.14.1]{silverman}). Let $\chi_i$ denote the corresponding $i$th quadratic character. By the
+		Grunwald--Wang theorem, there is a character $\chi$ over $\bQ$ such that $\chi$ completes to
+		each $\chi_i$. It follows that the quadratic twist $E_\chi$, which has the same $j$-invariant,
+		has split multiplicative reduction at each $\ell_i$.
+	\end{construction}
+	
+	\begin{proposition}
+		Let $k$ be a global field and let $A$ be a central simple algebra over $k$, ramified at finite
+		primes $\pi_1,\ldots,\pi_r$. For any $j$-invariant $j_0$ satisfying
+		$v_{\pi_i}(j)=-N$ for $1\leq i\leq r$ there is an elliptic curve $E$ defined over $k$ of
+		$j$-invraiant $j(E)=j_0$ such that $V_E^A(k_v)$ is non-empty for all places $v$.
+	\end{proposition}
+	
+	\begin{proof}
+		At finite places, this follows from the construction. At infinite real places $v$, $E(k_v)$ admits a
+		$k_v$-rational $2$-torsion point and hence the restriction of $\alpha$ to $k_v$ is split by an
+		$E$-torsor corresponding to a choice of dual of this $2$-torsion point under the Tate pairing.
+	\end{proof}
+	
+	
+	
+	\section{Proof of Theorem \ref{mainthm}}
+	
+	\begin{proof}
+		We may write $A=(\chi,a)$ for some $\chi\in H^1(k,\Z/N\Z)$ and $a\in k^\times$. 
+		
+		Let $V_E^A$ be the Hilbert scheme of elliptic normal curves $C$ in $\bP(A)$ with a fixed isomorphism $\Pic_{C/k}^0\iso E$. By ???, the collection of elliptic curves $E$ over $k$ such that $V_E^A(k_v)\neq \emptyset$ for every place $v$ of $k$ is infinite. By ???, the collection of elliptic curves $E$ over $k$ such that the group $E[p](k')$ is non-trivial is finite. Therefore, there exists an elliptic curve $E$ over $k$ such that $E[p](k')$ is trivial and $V_E^A(k_v)\neq \emptyset$ for every place $v$ of $k$.
+		
+		We now show that $\Br_{1,\nr}(V_E^A)=\Br_0(V_E^A)$. Let $k'=\Bar{k}^{\mathrm{Ker}\chi}$, let $\Delta= \Gamma_{k'}$ be the inverse image of a $p$-Sylow subgroup of $\mathrm{Out}(H_{\Bar{v}})$, and let $k''$ be the extension of $k'$ fixed by $\Delta$. By ???, we have $\Br_{1,\nr}((V_E^A)_{k''})=\Br_0((V_E^A)_{k''})$. By ???, we deduce that $\Br_{1,\nr}((V_E^A)_{k'})=\Br_0((V_E^A)_{k'})$. Finally, by ???, we obtain that $\Br_{1,\nr}(V_E^A)=\Br_0(V_E^A)$. We conclude by ???.
+	\end{proof}
+	
+	
+	\section{Future directions}
+	
+	\paragraph{Are there ever unramified Brauer classes?} We can prove that under certain assumptions on
+	$E$ that the split form $V_E$ has no non-constant unramified classes. Are there ever non-constant
+	unramified classes? Either in the split or the non-split case? One way to show this would be to
+	prove that $\Pic_{V^c_E/k}$ is a constant lattice, so that $\H^1(\Spec k,\Pic_{V^c_E/k})=0$. Now,
+	I'm not sure how to prove this, but Vakil and Zinger study
+	in~\cite{vakil-zinger,vakil-zinger-announce} compactificiations of the Hilbert scheme $V$ of elliptic normal
+	curves. This is obtained at blowing up at certain naturally defined types of degenerations. These
+	subspaces are defined over $\bZ$ (or perhaps $\bZ[\tfrac{1}{N}]$) and their arguments give
+	compactifications of $V_{j(E)}^\alpha$ as well. I wonder, since everything is so stable, if this is
+	enough to make a geometric argument about $\Pic_{V^c_E/k}$.
+	
+	Relatedly, there is a surjective map $\Pic_{V^c_E/k}\rightarrow\Pic_{V_E/k}$. I would love to know
+	that $\Pic_{V^c_E/k}$ were torsion free so that the kernel of this map were also torsion free. In
+	fact, is it the case that for any smooth projective {\em rational} variety one hac $\Pic_{X/k}$ is
+	torsion free?
+	
+	The idea would then be to argue that as $E$ varies over the moduli of elliptic curves one gets some
+	lattice of fixed rank. Then, one should argue that $\pi_1\bA^1=0$ to conclude that in fact there is
+	no variation and make some further arguments to conclude that $\Pic_{V^c_E/k}$ is a constant
+	lattice, from which it would follow that the unramified classes are always constant. Is this
+	feasible at all?
+	
+	\paragraph{Can we just compute Brauer--Manin directly?} We have such control over the local elements
+	of $V_E^k$ that it tempting to show directly that there are elements in the Brauer--Manin fixed
+	locus. The issue is that even in the split case given $\alpha\in\Br(V_E)$ and $x\in V_E(k_v)$ it is
+	hard to understand what $x^*\alpha$ is.
+	Nevertheless, this should be entirely controlled by the geometry of the situation. If possible, we
+	could presumably generalize Theorem~\ref{mainthm} to all $N$.
+	
+	This is a test.
+	
+	
+	\small
+	\bibliographystyle{amsplain}
+	\bibliography{enc}
+	
 \end{document}
