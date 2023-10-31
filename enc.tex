@@ -577,7 +577,7 @@ that these sequences are the same and I checked roughly up to $N=9997$.}} Among 
 $\GL_2$-general:
 $$35,\quad 65,\quad 77,\quad 85.$$
 Thus, for example, for $N=35,65,77,85$, every twisted form of $\bP^{N-1}$ over a number field $k$ contains an
-elliptic normal curve. For numbers up to $10\,000$ there are $1229$ primes and $2510$ numbers which
+elliptic normal curve. Among numbers up to $10\,000$ there are $1229$ primes and $2510$ numbers which
 are $\GL_2$-general.
 
 Our proof of Theorem~\ref{mainthm} is to rephrase the problem as one of finding rational points on
@@ -891,6 +891,42 @@ locus. The issue is that even in the split case given $\alpha\in\Br(V_E)$ and $x
 hard to understand what $x^*\alpha$ is.
 Nevertheless, this should be entirely controlled by the geometry of the situation. If possible, we
 could presumably generalize Theorem~\ref{mainthm} to all $N$.
+
+
+
+\subsection{Evaluating the Brauer--Manin obstruction}
+
+
+\begin{lemma}
+    Let $G$ be a simply connected semisimple algebraic group over a field $k$ \BA{of characteristic
+    $0$}. Let $V$ be a homogenous space for $G$ of
+    the form $G/H$ where $H\subseteq G$ is a finite (solvable?) subgroup and let $f\colon
+    V\rightarrow\Spec k$ be the structure morphism. We have
+    \begin{align*}
+        \R^0f_*\bG_{m,V}&\iso\Gm,\\
+        \R^1f_*\bG_{m,V}&\iso\widehat{H},\\
+        \R^2f_*\bG_{m,V}&=0,
+    \end{align*}
+    where $\widehat{H}$ is the Cartier dual of $H$, which agrees with the Cartier dual of the
+    abelianization of $H$.
+\end{lemma}
+
+\begin{proof}
+    Let $g\colon G\rightarrow\Spec k$ be the structure morphism for $G$.
+    Then, $\R^0g_*\bG_{m,G}\iso\Gm$ by
+    \BA{Rosenlicht's lemma}, $\R^1g_*\bG_{m,G}=0$ by simple connectedness, and $\R^2g_*\bG_{m,G}=0$
+    by a result of Iversen~\cite{iversen} since $G$ is simply connected. Let $h\colon G\rightarrow
+    V$ be the quotient map. We have that $\R^0h_*\bG_{m,G}$ a torus of rank the order of $H$, while
+    $\R^1h_*\bG_{m,G}=\R^2h_*\bG_{m,G}=0$. 
+    Using the spectral sequence $$\E_2^{s,t}=\R^s f_*(\R^t h_*\bG_{m,G})\Rightarrow\R^{s+t}
+    g_*\bG_{m,G},$$
+    As the natural pullback map $\R^0f_*\bG_{m,V}\rightarrow\R^0g_*\bG_{m,G}$ is
+    injective, it follows that the Rosenlicht's lemma holds for $V$ as well. The claim about
+    $\R^1f_*\bG_{m,V}$ is \BA{standard}.
+\end{proof}
+
+
+
 
 \small
 \bibliographystyle{amsplain}
