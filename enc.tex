@@ -275,6 +275,7 @@ backref]{hyperref}
 \newcommand{\Sym}{\mathrm{Sym}}
 
 % Miscellaneous
+\renewcommand{\Im}{\mathrm{Im}}
 \newcommand{\inv}{\mathrm{inv}}
 \newcommand{\nr}{\mathrm{nr}}
 \newcommand{\Aut}{\mathrm{Aut}}
@@ -983,6 +984,64 @@ Now, let $K=\bQ$, $p$ a prime, and $\ell_1,\ldots,\ell_r$ other primes.
 	
 	
 	
+\section{A new approach}
+
+In~\cite{lawson-wuthrich}, the authors prove that $\H^1(G,E[N](\overline{k}))$ typically vanishes where $G$ is
+the image of Galois in $\GL_2(\bZ/N)$. Using their ideas, we show that we can always choose $E$ so
+that $$\frac{\Br_{1,\nr}(V_E^A)}{\Br_0(V_E^A)}=0.$$ Suppose that $[A]=\theta\cup u$ where
+$\theta\in\H^1(\Spec k,\bZ/N)$ and $u\in\H^1(\Spec k,\mu_N)$.
+
+For infinitely many $j$-invariants there is an elliptic curve $E$ such that for all places $v$ there is
+an $E$-torsor over $k_v$ which splits $[A_v]\in\Br(k_v)$. We show that there are also many whose
+$N$-torsion satisfies certain conditions.
+
+\begin{lemma}
+    Suppose $N>1$ is an odd prime power, $k$ is a number field, and $A$ is a central simple algebra of degree $N$.
+    There are infinitely many $j$-invariants such that there exists an elliptic curve
+    $E$ defined over $k$ of that $j$-invariant satisfying the following conditions:
+    \begin{enumerate}
+        \item[{\em (a)}] for all places $v$ there is an $E$-torsor over $k_v$ which splits
+            $[A_v]\in\Br(k_v)$;
+        \item[{\em (b)}] $\Br_{1,\nr}(V_E^A)/\Br_0(V_E^A)=0$.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    Infinitely $j$-invariants $j_s$ with elliptic curves $E_s$ realizing (a) have been established above.
+%     For infinitely many $s$, one has $E_s[N](k)=0$.
+%     If $N$ is sufficiently large, this follows from
+%     Falting's theorem because the genus of the corresponding modular curve $X_1(N)$ is at least $2$.
+%     In that case, (b) also holds for infinitely many $s$, by applying Falting's theorem over $k_\theta$.
+% 
+%     \BA{We assume now that $N=p^i$ is an odd prime power.}
+    Possibly after a quadratic twist of $E_s$ away from
+    the ramification primes of $[A]$, we can assume that $$\begin{pmatrix}-1&0\\0&-1\end{pmatrix}$$
+    is in the image of Galois. This is a non-trivial homothety of $E[N]$. Consider the morphism
+    $$\Gamma_k\rightarrow\GL_2(\bZ/N)\times\bZ/N$$ obtained from the product of the Galois
+    representation attached to $E[N]$ and the character $\theta$. Let $H$ denote the kernel.
+    Then, $\Gamma_k/H$ fits into an exact sequence
+    $$0\rightarrow\bZ/N'\rightarrow\Gamma_k/H\rightarrow\Im\rightarrow 0,$$ where $\Im$ is the
+    image of the Galois inside $\GL_2(\bZ/N)$ and $N'$ is some divisor of $N$ corresponding to the
+    order of the image of $\theta$ in $\H^1(k(E[N]),\bZ/N)$. The group $\Gamma_k/H$ satisfies the hypotheses
+    needed to apply~\cite[Prop.~3.3]{harpaz-wittenberg-massey}. In particular,
+    $$\Br_{1,\nr}(V_E^A)/\Br_0(V_E^A)\hookrightarrow\H^1(\Gamma_k/H,E[N](\overline{k}))$$
+    (since $E$ has full level $N$ structure over $\overline{k}^H$ by construction).
+    Note also that the residual action of $\bZ/N'$ on $E[N](\overline{k})$ is trivial. The
+    inflation-restriction
+    exact sequence takes the form $$0\rightarrow
+    \H^1(\Im,E[N](\overline{k})^{\bZ/N'})\rightarrow\H^1(\Gamma_k/H,E[N](\overline{k}))\rightarrow\H^1(\bZ/N',E[N](\overline{k}))^{\Im}.$$
+    By the remark above, $E[N](\overline{k})^{\bZ/N'}\iso E[N](\overline{k})$. As $\Im$ contains a
+    non-trivial homothety and $N$ is a prime power, it follows from~\cite[Lem.~3]{lawson-wuthrich} that the
+    left-hand term vanishes. On the other hand, since the $\bZ/N'$-action is trivial,
+    $$\H^1(\bZ/N',E[N](\overline{k}))^{\Im})\subseteq E[N'](\overline{k})^{\Im}\subseteq
+    E[N](\overline{k})^{\Im}=0,$$
+    since $\Im$ contains a non-trivial homothety.
+\end{proof}
+
+\begin{remark}
+    I expect the same result works for all odd $N>1$, but I do not have time to check. For $N$ even,
+    a bit more work has to be done to handle the $2$-torsion, but it should be OK.
+\end{remark}
 	
 	
 	
